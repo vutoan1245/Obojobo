@@ -19,14 +19,12 @@ exports[`TextMenu TextMenu with required props 1`] = `
   <a
     onMouseDown={[Function]}
   >
-    <div>
-      <span>
-        Label
-      </span>
-      <img
-        className="click-blocker"
-      />
-    </div>
+    <span>
+      Label
+    </span>
+    <img
+      className="click-blocker"
+    />
   </a>
   <a
     onMouseDown={[Function]}

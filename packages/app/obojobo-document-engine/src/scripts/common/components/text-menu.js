@@ -6,10 +6,10 @@ class TextMenu extends React.Component {
 	renderImg(command) {
 		if (command.image === null || typeof command.image === 'undefined') {
 			return (
-				<div>
+				<React.Fragment>
 					<span>{command.label}</span>
 					<img className="click-blocker" />
-				</div>
+				</React.Fragment>
 			)
 		}
 

@@ -44,10 +44,10 @@ class Mod extends React.Component {
 
 const ModList = props => {
 	return (
-		<div>
+		<React.Fragment>
 			<p contentEditable={false}>{'Mods:'}</p>
 			{props.children}
-		</div>
+		</React.Fragment>
 	)
 }
 

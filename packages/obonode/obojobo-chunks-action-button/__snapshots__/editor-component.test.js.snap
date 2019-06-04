@@ -1,6 +1,6 @@
 // Jest Snapshot v1, https://goo.gl/fbAQLP
 
-exports[`ActionButton Editor Node ActionButton adds action 1`] = `"<div class=\\"text-chunk obojobo-draft--chunks--action-button pad\\"><div class=\\"obojobo-draft--components--button align-center\\"><div class=\\"button\\"></div></div><div class=\\"trigger-box\\" contenteditable=\\"false\\"><div>Button Actions:</div><div class=\\"trigger\\"><span>mockType</span><span>mockValue</span><div class=\\"obojobo-draft--components--button is-not-dangerous align-center delete-button\\"><button class=\\"button\\">×</button></div></div><div class=\\"obojobo-draft--components--button is-not-dangerous align-center add-action\\"><button class=\\"button\\">+ Add New Action</button></div></div></div>"`;
+exports[`ActionButton Editor Node ActionButton adds action 1`] = `"<div class=\\"text-chunk obojobo-draft--chunks--action-button pad\\"><div class=\\"obojobo-draft--components--button align-center\\"><div class=\\"button\\"></div></div><div class=\\"trigger-box\\" contenteditable=\\"false\\">Button Actions:<div class=\\"trigger\\"><span>mockType</span><span>mockValue</span><div class=\\"obojobo-draft--components--button is-not-dangerous align-center delete-button\\"><button class=\\"button\\">×</button></div></div><div class=\\"obojobo-draft--components--button is-not-dangerous align-center add-action\\"><button class=\\"button\\">+ Add New Action</button></div></div></div>"`;
 
 exports[`ActionButton Editor Node ActionButton builds the expected component 1`] = `
 <div
@@ -31,9 +31,7 @@ exports[`ActionButton Editor Node ActionButton builds the expected component whe
     className="trigger-box"
     contentEditable={false}
   >
-    <div>
-      Button Actions:
-    </div>
+    Button Actions:
     <div
       className="trigger"
     >
@@ -68,4 +66,4 @@ exports[`ActionButton Editor Node ActionButton builds the expected component whe
 </div>
 `;
 
-exports[`ActionButton Editor Node ActionButton deletes an action 1`] = `"<div class=\\"text-chunk obojobo-draft--chunks--action-button pad\\"><div class=\\"obojobo-draft--components--button align-center\\"><div class=\\"button\\"></div></div><div class=\\"trigger-box\\" contenteditable=\\"false\\"><div>Button Actions:</div><div class=\\"trigger\\"><span>mockType</span><span>mockValue</span><div class=\\"obojobo-draft--components--button is-not-dangerous align-center delete-button\\"><button class=\\"button\\">×</button></div></div><div class=\\"obojobo-draft--components--button is-not-dangerous align-center add-action\\"><button class=\\"button\\">+ Add New Action</button></div></div></div>"`;
+exports[`ActionButton Editor Node ActionButton deletes an action 1`] = `"<div class=\\"text-chunk obojobo-draft--chunks--action-button pad\\"><div class=\\"obojobo-draft--components--button align-center\\"><div class=\\"button\\"></div></div><div class=\\"trigger-box\\" contenteditable=\\"false\\">Button Actions:<div class=\\"trigger\\"><span>mockType</span><span>mockValue</span><div class=\\"obojobo-draft--components--button is-not-dangerous align-center delete-button\\"><button class=\\"button\\">×</button></div></div><div class=\\"obojobo-draft--components--button is-not-dangerous align-center add-action\\"><button class=\\"button\\">+ Add New Action</button></div></div></div>"`;

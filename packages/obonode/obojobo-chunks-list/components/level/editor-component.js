@@ -22,7 +22,7 @@ class Level extends React.Component {
 	}
 
 	render() {
-		return <div>{this.renderList()}</div>
+		return <React.Fragment>{this.renderList()}</React.Fragment>
 	}
 }
 

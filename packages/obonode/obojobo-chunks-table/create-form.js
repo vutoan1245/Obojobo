@@ -26,12 +26,12 @@ export default class CreateForm {
 
 	render() {
 		return (
-			<div>
+			<React.Fragment>
 				<label>rows:</label>
 				<input type="number" value={this.state.rows} onChange={this.onUpdateRows.bind(this)} />
 				<label>cols:</label>
 				<input type="number" value={this.state.cols} onChange={this.onUpdateCols.bind(this)} />
-			</div>
+			</React.Fragment>
 		)
 	}
 }

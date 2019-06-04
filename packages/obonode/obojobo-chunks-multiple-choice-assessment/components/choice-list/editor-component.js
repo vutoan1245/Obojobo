@@ -20,13 +20,13 @@ const ChoiceList = props => {
 	}
 
 	return (
-		<div>
+		<React.Fragment>
 			<span className={'instructions'}>{'Pick all of the correct answers'} </span>
 			{props.children}
 			<Button className={'choice-button pad'} onClick={() => addChoice()}>
 				{'+ Add Choice'}
 			</Button>
-		</div>
+		</React.Fragment>
 	)
 }
 

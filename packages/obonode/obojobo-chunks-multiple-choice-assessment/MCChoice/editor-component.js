@@ -64,7 +64,7 @@ class MCChoice extends React.Component {
 					{score === 100 ? '✔' : '✖'}
 				</button>
 				<div className="children">
-					<div>{this.props.children}</div>
+					<React.Fragment>{this.props.children}</React.Fragment>
 				</div>
 				{!hasFeedback ? (
 					<button className="add-feedback" onClick={() => this.addFeedback()}>

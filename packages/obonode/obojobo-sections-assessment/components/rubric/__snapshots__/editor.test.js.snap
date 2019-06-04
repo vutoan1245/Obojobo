@@ -22,13 +22,11 @@ exports[`Rubric editor Mod component deletes self 1`] = `"<div class=\\"mod pad\
 exports[`Rubric editor Mod component deletes self and parent 1`] = `"<div class=\\"mod pad\\"><div class=\\"obojobo-draft--components--button is-not-dangerous align-center delete-button\\"><button class=\\"button\\">×</button></div></div>"`;
 
 exports[`Rubric editor ModList component 1`] = `
-<div>
-  <p
-    contentEditable={false}
-  >
-    Mods:
-  </p>
-</div>
+<p
+  contentEditable={false}
+>
+  Mods:
+</p>
 `;
 
 exports[`Rubric editor Node component 1`] = `

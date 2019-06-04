@@ -1,12 +1,12 @@
 import React from 'react'
 
 const SimpleMessage = props => (
-	<div>
+	<React.Fragment>
 		<p>{props.children}</p>
 		<button onClick={props.modal.onButtonClick.bind(null, props.confirm)}>
 			{props.buttonLabel || 'OK'}
 		</button>
-	</div>
+	</React.Fragment>
 )
 
 export default SimpleMessage

@@ -7,9 +7,7 @@ exports[`YouTube Editor Node YouTube builds the expected component 1`] = `
   <div
     className="empty-frame"
   >
-    <div>
-      No Video Id.
-    </div>
+    No Video Id.
   </div>
   <div
     className="obojobo-draft--components--button is-not-dangerous align-center"

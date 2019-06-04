@@ -1,7 +1,7 @@
 import React from 'react'
 
 const QuestionModal = props => (
-	<div>
+	<React.Fragment>
 		<p>{props.children}</p>
 		<button
 			onClick={props.modal.onButtonClick.bind(
@@ -14,7 +14,7 @@ const QuestionModal = props => (
 		<button onClick={props.modal.onButtonClick.bind(this, props.confirm)}>
 			{props.confirmButtonLabel || 'Yes'}
 		</button>
-	</div>
+	</React.Fragment>
 )
 
 export default QuestionModal

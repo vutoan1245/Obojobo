@@ -39,7 +39,7 @@ class YouTube extends React.Component {
 	renderNoVideo() {
 		return (
 			<div className="empty-frame">
-				<div>No Video Id.</div>
+				No Video Id.
 			</div>
 		)
 	}

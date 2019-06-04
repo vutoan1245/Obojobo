@@ -4,7 +4,7 @@ import React from 'react'
 
 const Settings = props => (
 	<div className={'qb-settings'}>
-		<div>{props.children}</div>
+		<React.Fragment>{props.children}</React.Fragment>
 	</div>
 )
 

@@ -240,7 +240,7 @@ class Node extends React.Component {
 
 	render() {
 		return (
-			<div>
+			<React.Fragment>
 				{markList.map(mark => {
 					const Icon = mark.icon
 					return (
@@ -253,7 +253,7 @@ class Node extends React.Component {
 						</button>
 					)
 				})}
-			</div>
+			</React.Fragment>
 		)
 	}
 }

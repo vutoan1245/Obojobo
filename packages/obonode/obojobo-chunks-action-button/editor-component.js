@@ -56,7 +56,7 @@ class ActionButton extends React.Component {
 		const content = this.props.node.data.get('content')
 		return (
 			<div className="trigger-box" contentEditable={false}>
-				<div>Button Actions:</div>
+				Button Actions:
 				{content.actions.map((action, index) => {
 					return (
 						<Trigger

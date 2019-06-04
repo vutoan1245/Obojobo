@@ -44,7 +44,7 @@ class Score extends React.Component {
 	render() {
 		const dataFor = this.props.node.data.get('for')
 		return (
-			<div>
+			<React.Fragment>
 				<div className={'action-data'}>
 					<h2>{'Score Range: ' + dataFor + ' '}</h2>
 					<button
@@ -61,7 +61,7 @@ class Score extends React.Component {
 						×
 					</Button>
 				</div>
-			</div>
+			</React.Fragment>
 		)
 	}
 }
