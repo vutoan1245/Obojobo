@@ -1,0 +1,11 @@
+{
+  "name": "obojobo-document-json-parser",
+  "version": "1.0.0",
+  "description": "",
+  "main": "json-to-xml-parser.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "author": "",
+  "license": "ISC"
+}
