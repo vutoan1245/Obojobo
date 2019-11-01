@@ -1,5 +1,5 @@
 import YouTube from './editor-registration'
-const YOUTUBE_NODE = 'ObojoboDraft.Chunks.YouTube'
+import { YOUTUBE_NODE } from './constants'
 
 describe('YouTube editor', () => {
 	test('slateToObo converts a Slate node to an OboNode with content', () => {

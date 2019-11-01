@@ -1,6 +1,8 @@
+import { YOUTUBE_NODE } from './constants'
+
 const schema = {
 	blocks: {
-		'ObojoboDraft.Chunks.YouTube': {
+		[YOUTUBE_NODE]: {
 			isVoid: true
 		}
 	}

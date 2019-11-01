@@ -5,8 +5,7 @@ import Icon from './icon'
 import Node from './editor-component'
 import Schema from './schema'
 import Converter from './converter'
-
-const YOUTUBE_NODE = 'ObojoboDraft.Chunks.YouTube'
+import { YOUTUBE_NODE } from './constants'
 
 const YouTube = {
 	name: YOUTUBE_NODE,

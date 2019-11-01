@@ -3,6 +3,7 @@ import renderer from 'react-test-renderer'
 
 import YouTube from './viewer-component'
 import OboModel from 'obojobo-document-engine/src/scripts/common/models/obo-model'
+import { YOUTUBE_NODE } from './constants'
 
 require('./viewer') // used to register this oboModel
 
@@ -10,7 +11,7 @@ describe('YouTube', () => {
 	test('YouTube component', () => {
 		const model = OboModel.create({
 			id: 'id',
-			type: 'ObojoboDraft.Chunks.YouTube',
+			type: YOUTUBE_NODE,
 			content: {
 				videoId: 'dQw4w9WgXcQ'
 			}
