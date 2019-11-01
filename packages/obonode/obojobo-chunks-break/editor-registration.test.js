@@ -1,6 +1,6 @@
 import Break from './editor-registration'
 
-const BREAK_NODE = 'ObojoboDraft.Chunks.Break'
+import { BREAK_NODE } from './constants'
 
 describe('Break editor', () => {
 	test('plugins.renderNode renders a break when passed', () => {

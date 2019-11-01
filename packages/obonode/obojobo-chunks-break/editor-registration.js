@@ -5,8 +5,7 @@ import Icon from './icon'
 import Node from './editor-component'
 import Schema from './schema'
 import Converter from './converter'
-
-const BREAK_NODE = 'ObojoboDraft.Chunks.Break'
+import { BREAK_NODE } from './constants'
 
 const Break = {
 	name: BREAK_NODE,

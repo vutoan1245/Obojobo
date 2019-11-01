@@ -3,6 +3,7 @@ import renderer from 'react-test-renderer'
 
 import Break from './viewer-component'
 import OboModel from 'obojobo-document-engine/src/scripts/common/models/obo-model'
+import { BREAK_NODE } from './constants'
 
 require('./viewer') // used to register this oboModel
 
@@ -13,7 +14,7 @@ describe('Break', () => {
 		}
 		const model = OboModel.create({
 			id: 'id',
-			type: 'ObojoboDraft.Chunks.Break'
+			type: BREAK_NODE
 		})
 
 		const component = renderer.create(<Break model={model} moduleData={moduleData} />)

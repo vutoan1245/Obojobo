@@ -1,6 +1,8 @@
+import { BREAK_NODE } from './constants'
+
 const schema = {
 	blocks: {
-		'ObojoboDraft.Chunks.Break': {
+		[BREAK_NODE]: {
 			isVoid: true
 		}
 	}

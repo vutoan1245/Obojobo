@@ -1,3 +1,5 @@
+import { NORMAL } from './constants'
+
 const slateToObo = node => ({
 	id: node.key,
 	type: node.type,
@@ -9,7 +11,7 @@ const slateToObo = node => ({
 
 const oboToSlate = node => {
 	const content = node.content
-	if (!content.width) content.width = 'normal'
+	if (!content.width) content.width = NORMAL
 
 	return {
 		object: 'block',

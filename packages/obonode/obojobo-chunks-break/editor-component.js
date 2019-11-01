@@ -4,6 +4,7 @@ import './editor-component.scss'
 import React from 'react'
 import Common from 'obojobo-document-engine/src/scripts/common'
 import Node from 'obojobo-document-engine/src/scripts/oboeditor/components/node/editor-component'
+import { NORMAL, LARGE } from './constants'
 
 const { Button } = Common.components
 
@@ -12,7 +13,7 @@ class Break extends React.Component {
 		const editor = this.props.editor
 		const content = this.props.node.data.get('content')
 
-		const newSize = content.width === 'normal' ? 'large' : 'normal'
+		const newSize = content.width === NORMAL ? LARGE : NORMAL
 		content.width = newSize
 
 		return editor.setNodeByKey(this.props.node.key, {
@@ -38,7 +39,8 @@ class Break extends React.Component {
 				<div
 					className={`non-editable-chunk obojobo-draft--chunks--break viewer width-${
 						this.props.node.data.get('content').width
-					}`}>
+					}`}
+				>
 					<hr />
 					{this.props.isSelected ? this.renderButton() : null}
 				</div>

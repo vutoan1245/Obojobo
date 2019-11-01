@@ -3,6 +3,7 @@ import { mount } from 'enzyme'
 import renderer from 'react-test-renderer'
 
 import Break from './editor-component'
+import { NORMAL, LARGE } from './constants'
 
 jest.mock(
 	'obojobo-document-engine/src/scripts/oboeditor/components/node/editor-component',
@@ -35,7 +36,7 @@ describe('Break Editor Node', () => {
 				isSelected={true}
 				node={{
 					data: {
-						get: () => ({ width: 'normal' })
+						get: () => ({ width: NORMAL })
 					}
 				}}
 				editor={editor}
@@ -58,7 +59,7 @@ describe('Break Editor Node', () => {
 				isSelected={true}
 				node={{
 					data: {
-						get: () => ({ width: 'large' })
+						get: () => ({ width: LARGE })
 					}
 				}}
 				editor={editor}
