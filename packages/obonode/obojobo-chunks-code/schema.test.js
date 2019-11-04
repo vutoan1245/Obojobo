@@ -3,7 +3,7 @@ import SchemaViolations from 'obojobo-document-engine/src/scripts/oboeditor/util
 const { CHILD_TYPE_INVALID, CHILD_MIN_INVALID } = SchemaViolations
 
 import Schema from './schema'
-const CODE_NODE = 'ObojoboDraft.Chunks.Code'
+import { CODE_NODE } from './constants'
 
 describe('Code Schema', () => {
 	test('normalize fixes invalid children in code', () => {

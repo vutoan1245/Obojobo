@@ -2,8 +2,7 @@ import SlateReact from 'slate-react'
 jest.mock('slate-react')
 
 import Code from './editor-registration'
-const CODE_NODE = 'ObojoboDraft.Chunks.Code'
-const CODE_LINE_NODE = 'ObojoboDraft.Chunks.Code.CodeLine'
+import { CODE_NODE, CODE_LINE_NODE } from './constants'
 
 describe('Code editor', () => {
 	test('onPaste calls next if not pasting text into a CODE_NODE', () => {

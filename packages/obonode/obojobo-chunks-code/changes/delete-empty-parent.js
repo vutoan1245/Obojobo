@@ -1,4 +1,4 @@
-const CODE_NODE = 'ObojoboDraft.Chunks.Code'
+import { CODE_NODE } from '../constants'
 
 const deleteEmptyParent = (event, change) => {
 	const last = change.value.endBlock

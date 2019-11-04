@@ -1,13 +1,13 @@
 import { Block } from 'slate'
 
 import SchemaViolations from 'obojobo-document-engine/src/scripts/oboeditor/util/schema-violations'
+import { CODE_NODE, CODE_LINE_NODE } from './constants'
 
 const { CHILD_TYPE_INVALID, CHILD_MIN_INVALID } = SchemaViolations
-const CODE_LINE_NODE = 'ObojoboDraft.Chunks.Code.CodeLine'
 
 const schema = {
 	blocks: {
-		'ObojoboDraft.Chunks.Code': {
+		[CODE_NODE]: {
 			nodes: [
 				{
 					match: [{ type: CODE_LINE_NODE }],
@@ -39,7 +39,7 @@ const schema = {
 				}
 			}
 		},
-		'ObojoboDraft.Chunks.Code.CodeLine': {
+		[CODE_LINE_NODE]: {
 			nodes: [
 				{
 					match: [{ object: 'text' }],

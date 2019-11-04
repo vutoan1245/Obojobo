@@ -1,6 +1,6 @@
 import TextUtil from 'obojobo-document-engine/src/scripts/oboeditor/util/text-util'
 
-const CODE_LINE_NODE = 'ObojoboDraft.Chunks.Code.CodeLine'
+import { CODE_LINE_NODE } from './constants'
 
 const slateToObo = node => {
 	const textGroup = node.nodes.map(line => {

@@ -11,9 +11,7 @@ import Schema from './schema'
 import decreaseIndent from './changes/decrease-indent'
 import emptyNode from './empty-node.json'
 import increaseIndent from './changes/increase-indent'
-
-const CODE_NODE = 'ObojoboDraft.Chunks.Code'
-const CODE_LINE_NODE = 'ObojoboDraft.Chunks.Code.CodeLine'
+import { CODE_NODE, CODE_LINE_NODE } from './constants'
 
 const isType = editor => {
 	return editor.value.blocks.some(block => {
@@ -67,7 +65,11 @@ const plugins = {
 		if (node.text !== '') return next()
 
 		return (
-			<span className={'placeholder'} contentEditable={false} data-placeholder="Type Your Code Here"/>
+			<span
+				className={'placeholder'}
+				contentEditable={false}
+				data-placeholder="Type Your Code Here"
+			/>
 		)
 	},
 	renderNode(props, editor, next) {
@@ -86,7 +88,7 @@ const plugins = {
 			return textList.map(textLine =>
 				Block.create({
 					object: 'block',
-					type: 'ObojoboDraft.Chunks.Code.CodeLine',
+					type: CODE_LINE_NODE,
 					data: { content: { indent: 0 } },
 					nodes: [
 						{

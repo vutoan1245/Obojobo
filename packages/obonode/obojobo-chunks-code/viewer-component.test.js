@@ -3,10 +3,11 @@ import renderer from 'react-test-renderer'
 
 import Code from './viewer-component'
 import OboModel from 'obojobo-document-engine/src/scripts/common/models/obo-model'
+import { CODE_NODE } from './constants'
 
 const chunkJSON = {
 	id: 'id',
-	type: 'ObojoboDraft.Chunks.Code',
+	type: CODE_NODE,
 	content: {
 		textGroup: [
 			{
