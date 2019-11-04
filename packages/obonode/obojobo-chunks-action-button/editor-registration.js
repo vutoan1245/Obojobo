@@ -5,11 +5,10 @@ import Icon from './icon'
 import Node from './editor-component'
 import Schema from './schema'
 import Converter from './converter'
-
-const UNIQUE_NAME = 'ObojoboDraft.Chunks.ActionButton'
+import { ACTION_BUTTON_NODE } from './constants'
 
 const ActionButton = {
-	name: UNIQUE_NAME,
+	name: ACTION_BUTTON_NODE,
 	menuLabel: 'Button',
 	icon: Icon,
 	isInsertable: true,
@@ -24,7 +23,7 @@ const ActionButton = {
 	plugins: {
 		renderNode(props, editor, next) {
 			switch (props.node.type) {
-				case UNIQUE_NAME:
+				case ACTION_BUTTON_NODE:
 					return <Node {...props} {...props.attributes} />
 				default:
 					return next()
@@ -32,11 +31,15 @@ const ActionButton = {
 		},
 		renderPlaceholder(props, editor, next) {
 			const { node } = props
-			if (node.object !== 'block' || node.type !== UNIQUE_NAME) return next()
+			if (node.object !== 'block' || node.type !== ACTION_BUTTON_NODE) return next()
 			if (node.text !== '') return next()
 
 			return (
-				<span className={'placeholder align-center required'} contentEditable={false} data-placeholder="Your Label Here" />
+				<span
+					className={'placeholder align-center required'}
+					contentEditable={false}
+					data-placeholder="Your Label Here"
+				/>
 			)
 		},
 		schema: Schema

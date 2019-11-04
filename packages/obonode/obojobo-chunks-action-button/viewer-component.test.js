@@ -4,6 +4,7 @@ import renderer from 'react-test-renderer'
 import ActionButton from './viewer-component'
 import OboModel from 'obojobo-document-engine/src/scripts/common/models/obo-model'
 import focus from 'obojobo-document-engine/src/scripts/common/page/focus'
+import { ACTION_BUTTON_NODE } from './constants'
 
 jest.mock('obojobo-document-engine/src/scripts/common/page/focus')
 
@@ -16,7 +17,7 @@ describe('ActionButton', () => {
 		}
 		const model = OboModel.create({
 			id: 'id',
-			type: 'ObojoboDraft.Chunks.ActionButton',
+			type: ACTION_BUTTON_NODE,
 			content: {
 				textGroup: [
 					{
@@ -40,7 +41,7 @@ describe('ActionButton', () => {
 		}
 		const model = OboModel.create({
 			id: 'id',
-			type: 'ObojoboDraft.Chunks.ActionButton',
+			type: ACTION_BUTTON_NODE,
 			content: {
 				label: 'Example Label'
 			}

@@ -1,6 +1,8 @@
+import { ACTION_BUTTON_NODE } from './constants'
+
 const schema = {
 	blocks: {
-		'ObojoboDraft.Chunks.ActionButton': {
+		[ACTION_BUTTON_NODE]: {
 			nodes: [
 				{
 					match: [{ object: 'text' }],

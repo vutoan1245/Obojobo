@@ -1,12 +1,12 @@
 import ActionButton from './editor-registration'
-const BUTTON_NODE = 'ObojoboDraft.Chunks.ActionButton'
+import { ACTION_BUTTON_NODE } from './constants'
 
 describe('ActionButton editor', () => {
 	test('plugins.renderNode renders a button when passed', () => {
 		const props = {
 			attributes: { dummy: 'dummyData' },
 			node: {
-				type: BUTTON_NODE,
+				type: ACTION_BUTTON_NODE,
 				data: {
 					get: () => {
 						return {}
@@ -68,7 +68,7 @@ describe('ActionButton editor', () => {
 				{
 					node: {
 						object: 'block',
-						type: BUTTON_NODE,
+						type: ACTION_BUTTON_NODE,
 						text: 'Some text'
 					}
 				},
@@ -84,7 +84,7 @@ describe('ActionButton editor', () => {
 				{
 					node: {
 						object: 'block',
-						type: BUTTON_NODE,
+						type: ACTION_BUTTON_NODE,
 						text: ''
 					}
 				},
