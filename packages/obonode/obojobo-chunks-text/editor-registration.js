@@ -13,9 +13,7 @@ import emptyNode from './empty-node.json'
 import increaseIndent from './changes/increase-indent'
 import insertTab from './changes/insert-tab'
 import splitParent from './changes/split-parent'
-
-const TEXT_NODE = 'ObojoboDraft.Chunks.Text'
-const TEXT_LINE_NODE = 'ObojoboDraft.Chunks.Text.TextLine'
+import { TEXT_NODE, TEXT_LINE_NODE } from './constant'
 
 const isType = editor => {
 	return editor.value.blocks.some(block => {
@@ -93,7 +91,8 @@ const plugins = {
 			<span
 				className={'placeholder align-' + node.data.get('align')}
 				contentEditable={false}
-				data-placeholder="Type Your Text Here" />
+				data-placeholder="Type Your Text Here"
+			/>
 		)
 	},
 	schema: Schema,

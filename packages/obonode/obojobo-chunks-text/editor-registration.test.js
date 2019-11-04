@@ -6,8 +6,7 @@ jest.mock('slate-react')
 jest.mock('obojobo-document-engine/src/scripts/oboeditor/util/text-util')
 
 import Text from './editor-registration'
-const TEXT_NODE = 'ObojoboDraft.Chunks.Text'
-const TEXT_LINE_NODE = 'ObojoboDraft.Chunks.Text.TextLine'
+import { TEXT_NODE, TEXT_LINE_NODE } from './constant'
 
 describe('Text editor', () => {
 	test('onPaste calls next if not pasting text into a TEXT_NODE', () => {
