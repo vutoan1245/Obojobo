@@ -1,4 +1,4 @@
-const MODULE_NODE = 'ObojoboDraft.Modules.Module'
+import { MODULE_NODE } from './constants'
 
 const Module = {
 	name: MODULE_NODE,

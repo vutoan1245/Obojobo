@@ -12,11 +12,12 @@ const Common = require('obojobo-document-engine/src/scripts/common/index')
 // include the script we're testing, it registers the model
 import './viewer'
 import ViewerComponent from './viewer-component'
+import { MODULE_NODE } from './constants'
 
-describe('ObojoboDraft.Modules.Module registration', () => {
+describe(`${MODULE_NODE} registration`, () => {
 	test('registerModel registers expected vars', () => {
 		const register = Common.Registry.registerModel.mock.calls[0]
-		expect(register[0]).toBe('ObojoboDraft.Modules.Module')
+		expect(register[0]).toBe(MODULE_NODE)
 		expect(register[1]).toHaveProperty('type', 'module')
 		expect(register[1]).toHaveProperty('adapter', {})
 		expect(register[1]).toHaveProperty('componentClass', ViewerComponent)
