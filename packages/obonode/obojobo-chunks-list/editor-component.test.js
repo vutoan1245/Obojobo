@@ -3,6 +3,7 @@ import { mount } from 'enzyme'
 import renderer from 'react-test-renderer'
 
 import List from './editor-component'
+import { ORDERED, UNORDERED } from './constants'
 
 describe('List Editor Node', () => {
 	test('List component', () => {
@@ -32,7 +33,7 @@ describe('List Editor Node', () => {
 				node={{
 					data: {
 						get: () => {
-							return { listStyles: { type: 'ordered' } }
+							return { listStyles: { type: ORDERED } }
 						}
 					},
 					filterDescendants: funct => {
@@ -68,7 +69,7 @@ describe('List Editor Node', () => {
 				node={{
 					data: {
 						get: () => {
-							return { listStyles: { type: 'unordered' } }
+							return { listStyles: { type: UNORDERED } }
 						}
 					},
 					filterDescendants: funct => {

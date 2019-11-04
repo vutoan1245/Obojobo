@@ -1,4 +1,13 @@
 import looksLikeListItem from './list-detector'
+import {
+	DECIMAL,
+	ORDERED,
+	UNORDERED,
+	LOWER_ALPHA,
+	LOWER_ROMAN,
+	UPPER_ALPHA,
+	UPPER_ROMAN
+} from './constants'
 
 describe('List Detector', () => {
 	test('looksLikeListItem will return false when text is not formatted property', () => {
@@ -19,7 +28,7 @@ describe('List Detector', () => {
 
 	test('looksLikeListItem returns details about a text-representation of an unordered list', () => {
 		expect(looksLikeListItem('* ')).toEqual({
-			type: 'unordered',
+			type: UNORDERED,
 			symbol: '*',
 			symbolIndex: 1,
 			defaultSymbol: true,
@@ -29,15 +38,15 @@ describe('List Detector', () => {
 
 	test('looksLikeListItem returns details about a text-representation of an ordered list - Number', () => {
 		expect(looksLikeListItem('1. ')).toEqual({
-			type: 'ordered',
+			type: ORDERED,
 			symbol: '1',
 			symbolIndex: 1,
 			defaultSymbol: true,
-			symbolStyle: 'decimal'
+			symbolStyle: DECIMAL
 		})
 
 		expect(looksLikeListItem('01. ')).toEqual({
-			type: 'ordered',
+			type: ORDERED,
 			symbol: '01',
 			symbolIndex: 1,
 			defaultSymbol: false,
@@ -45,103 +54,103 @@ describe('List Detector', () => {
 		})
 
 		expect(looksLikeListItem('2. ')).toEqual({
-			type: 'ordered',
+			type: ORDERED,
 			symbol: '2',
 			symbolIndex: 2,
 			defaultSymbol: false,
-			symbolStyle: 'decimal'
+			symbolStyle: DECIMAL
 		})
 	})
 
 	test('looksLikeListItem returns details about a text-representation of an ordered list - Letter', () => {
 		expect(looksLikeListItem('a. ')).toEqual({
-			type: 'ordered',
+			type: ORDERED,
 			symbol: 'a',
 			symbolIndex: 1,
 			defaultSymbol: false,
-			symbolStyle: 'lower-alpha'
+			symbolStyle: LOWER_ALPHA
 		})
 
 		expect(looksLikeListItem('B. ')).toEqual({
-			type: 'ordered',
+			type: ORDERED,
 			symbol: 'B',
 			symbolIndex: 2,
 			defaultSymbol: false,
-			symbolStyle: 'upper-alpha'
+			symbolStyle: UPPER_ALPHA
 		})
 	})
 
 	test('looksLikeListItem returns details about a text-representation of an ordered list - Roman', () => {
 		expect(looksLikeListItem('i. ')).toEqual({
-			type: 'ordered',
+			type: ORDERED,
 			symbol: 'i',
 			symbolIndex: 1,
 			defaultSymbol: false,
-			symbolStyle: 'lower-roman'
+			symbolStyle: LOWER_ROMAN
 		})
 
 		expect(looksLikeListItem('II. ')).toEqual({
-			type: 'ordered',
+			type: ORDERED,
 			symbol: 'II',
 			symbolIndex: 2,
 			defaultSymbol: false,
-			symbolStyle: 'upper-roman'
+			symbolStyle: UPPER_ROMAN
 		})
 
 		expect(looksLikeListItem('iii. ')).toEqual({
-			type: 'ordered',
+			type: ORDERED,
 			symbol: 'iii',
 			symbolIndex: 3,
 			defaultSymbol: false,
-			symbolStyle: 'lower-roman'
+			symbolStyle: LOWER_ROMAN
 		})
 
 		expect(looksLikeListItem('IV. ')).toEqual({
-			type: 'ordered',
+			type: ORDERED,
 			symbol: 'IV',
 			symbolIndex: 4,
 			defaultSymbol: false,
-			symbolStyle: 'upper-roman'
+			symbolStyle: UPPER_ROMAN
 		})
 
 		expect(looksLikeListItem('v. ')).toEqual({
-			type: 'ordered',
+			type: ORDERED,
 			symbol: 'v',
 			symbolIndex: 5,
 			defaultSymbol: false,
-			symbolStyle: 'lower-roman'
+			symbolStyle: LOWER_ROMAN
 		})
 
 		expect(looksLikeListItem('VI. ')).toEqual({
-			type: 'ordered',
+			type: ORDERED,
 			symbol: 'VI',
 			symbolIndex: 6,
 			defaultSymbol: false,
-			symbolStyle: 'upper-roman'
+			symbolStyle: UPPER_ROMAN
 		})
 
 		expect(looksLikeListItem('vii. ')).toEqual({
-			type: 'ordered',
+			type: ORDERED,
 			symbol: 'vii',
 			symbolIndex: 7,
 			defaultSymbol: false,
-			symbolStyle: 'lower-roman'
+			symbolStyle: LOWER_ROMAN
 		})
 
 		expect(looksLikeListItem('VIII. ')).toEqual({
-			type: 'ordered',
+			type: ORDERED,
 			symbol: 'VIII',
 			symbolIndex: 8,
 			defaultSymbol: false,
-			symbolStyle: 'upper-roman'
+			symbolStyle: UPPER_ROMAN
 		})
 
 		expect(looksLikeListItem('ix. ')).toEqual({
-			type: 'ordered',
+			type: ORDERED,
 			symbol: 'ix',
 			symbolIndex: 9,
 			defaultSymbol: false,
-			symbolStyle: 'lower-roman'
+			symbolStyle: LOWER_ROMAN
 		})
 	})
 })

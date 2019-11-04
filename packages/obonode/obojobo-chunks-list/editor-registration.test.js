@@ -4,9 +4,7 @@ jest.mock('slate-react')
 import { CHILD_TYPE_INVALID } from 'slate-schema-violations'
 
 import List from './editor-registration'
-const LIST_NODE = 'ObojoboDraft.Chunks.List'
-const LIST_LINE_NODE = 'ObojoboDraft.Chunks.List.Line'
-const LIST_LEVEL_NODE = 'ObojoboDraft.Chunks.List.Level'
+import { LIST_NODE, LIST_LINE_NODE, LIST_LEVEL_NODE, ORDERED, UNORDERED, SQUARE } from './constants'
 
 describe('List editor', () => {
 	test('onPaste calls next if not pasting text into a LIST_NODE', () => {
@@ -517,8 +515,8 @@ describe('List editor', () => {
 							data: {
 								get: () => {
 									return {
-										bulletStyle: 'square',
-										type: 'unordered'
+										bulletStyle: SQUARE,
+										type: UNORDERED
 									}
 								}
 							}
@@ -560,8 +558,8 @@ describe('List editor', () => {
 							data: {
 								get: () => {
 									return {
-										bulletStyle: 'square',
-										type: 'ordered'
+										bulletStyle: SQUARE,
+										type: ORDERED
 									}
 								}
 							}
@@ -741,7 +739,7 @@ describe('List editor', () => {
 					get: () => {
 						return {
 							listStyles: {
-								type: 'unordered'
+								type: UNORDERED
 							}
 						}
 					}
@@ -767,7 +765,7 @@ describe('List editor', () => {
 					get: () => {
 						return {
 							listStyles: {
-								type: 'ordered'
+								type: ORDERED
 							}
 						}
 					}
@@ -793,7 +791,7 @@ describe('List editor', () => {
 					get: () => {
 						return {
 							listStyles: {
-								type: 'ordered'
+								type: ORDERED
 							}
 						}
 					}
@@ -819,7 +817,7 @@ describe('List editor', () => {
 					get: () => {
 						return {
 							listStyles: {
-								type: 'ordered'
+								type: ORDERED
 							}
 						}
 					}

@@ -1,5 +1,4 @@
-const LIST_NODE = 'ObojoboDraft.Chunks.List'
-const LIST_LEVEL_NODE = 'ObojoboDraft.Chunks.List.Level'
+import { LIST_NODE, LIST_LEVEL_NODE } from '../constants'
 
 const onBackspace = (event, editor, next) => {
 	const last = editor.value.endBlock

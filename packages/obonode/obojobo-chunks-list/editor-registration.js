@@ -15,9 +15,7 @@ import insertText from './changes/insert-text'
 import unwrapLevel from './changes/unwrap-level'
 import wrapLevel from './changes/wrap-level'
 
-const LIST_NODE = 'ObojoboDraft.Chunks.List'
-const LIST_LINE_NODE = 'ObojoboDraft.Chunks.List.Line'
-const LIST_LEVEL_NODE = 'ObojoboDraft.Chunks.List.Level'
+import { LIST_NODE, LIST_LINE_NODE, LIST_LEVEL_NODE } from './constants'
 
 const isType = editor => {
 	return editor.value.blocks.some(block => {
@@ -88,7 +86,11 @@ const plugins = {
 		if (node.object !== 'block' || node.type !== LIST_LINE_NODE || node.text !== '') return next()
 
 		return (
-			<span className="placeholder" contentEditable={false} data-placeholder="Type Your Text Here"/>
+			<span
+				className="placeholder"
+				contentEditable={false}
+				data-placeholder="Type Your Text Here"
+			/>
 		)
 	},
 	normalizeNode(node, editor, next) {

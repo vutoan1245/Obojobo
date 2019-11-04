@@ -1,12 +1,9 @@
-const LIST_LEVEL_NODE = 'ObojoboDraft.Chunks.List.Level'
-
-const unorderedBullets = ['disc', 'circle', 'square']
-const orderedBullets = ['decimal', 'upper-alpha', 'upper-roman', 'lower-alpha', 'lower-roman']
+import { LIST_LEVEL_NODE, UNORDERED, unorderedBullets, orderedBullets } from '../constants'
 
 const unwrapLevel = (event, editor) => {
 	event.preventDefault()
 	let bullet = 'disc'
-	let type = 'unordered'
+	let type = UNORDERED
 
 	// get the bullet and type of the closest parent level
 	editor.value.blocks.forEach(block => {
@@ -20,7 +17,7 @@ const unwrapLevel = (event, editor) => {
 	})
 
 	// get the proper bullet for the next level
-	const bulletList = type === 'unordered' ? unorderedBullets : orderedBullets
+	const bulletList = type === UNORDERED ? unorderedBullets : orderedBullets
 	const nextBullet = bulletList[(bulletList.indexOf(bullet) + 1) % bulletList.length]
 
 	// add in the new level around the lines

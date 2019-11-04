@@ -2,6 +2,7 @@ import React from 'react'
 import renderer from 'react-test-renderer'
 
 import Level from './editor-component'
+import { ALPHA, ORDERED, UNORDERED, SQUARE } from '../../constants'
 
 describe('List editor', () => {
 	test('Level component', () => {
@@ -10,7 +11,7 @@ describe('List editor', () => {
 				node={{
 					data: {
 						get: () => {
-							return { bulletStyle: 'square', type: 'unordered' }
+							return { bulletStyle: SQUARE, type: UNORDERED }
 						}
 					}
 				}}
@@ -27,7 +28,7 @@ describe('List editor', () => {
 				node={{
 					data: {
 						get: () => {
-							return { bulletStyle: 'alpha', type: 'ordered' }
+							return { bulletStyle: ALPHA, type: ORDERED }
 						}
 					}
 				}}

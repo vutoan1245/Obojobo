@@ -3,6 +3,7 @@ import renderer from 'react-test-renderer'
 
 import List from './viewer-component'
 import OboModel from 'obojobo-document-engine/src/scripts/common/models/obo-model'
+import { LIST_NODE, ORDERED, UNORDERED, SQUARE, UPPER_ALPHA } from './constants'
 
 require('./viewer') // used to register this oboModel
 
@@ -13,20 +14,20 @@ describe('List', () => {
 		}
 		const model = OboModel.create({
 			id: 'id',
-			type: 'ObojoboDraft.Chunks.List',
+			type: LIST_NODE,
 			content: {
 				textGroup: [],
 				listStyles: {
-					type: 'ordered',
+					type: ORDERED,
 					indents: {
 						'2': {
-							type: 'unordered',
-							bulletStyle: 'square'
+							type: UNORDERED,
+							bulletStyle: SQUARE
 						},
 						'4': {
-							type: 'ordered',
+							type: ORDERED,
 							start: '10',
-							bulletStyle: 'upper-alpha'
+							bulletStyle: UPPER_ALPHA
 						}
 					}
 				}
@@ -45,7 +46,7 @@ describe('List', () => {
 		}
 		const model = OboModel.create({
 			id: 'id',
-			type: 'ObojoboDraft.Chunks.List',
+			type: LIST_NODE,
 			content: {
 				textGroup: [
 					{
@@ -104,16 +105,16 @@ describe('List', () => {
 					}
 				],
 				listStyles: {
-					type: 'ordered',
+					type: ORDERED,
 					indents: {
 						'2': {
-							type: 'unordered',
-							bulletStyle: 'square'
+							type: UNORDERED,
+							bulletStyle: SQUARE
 						},
 						'4': {
-							type: 'ordered',
+							type: ORDERED,
 							start: '10',
-							bulletStyle: 'upper-alpha'
+							bulletStyle: UPPER_ALPHA
 						}
 					}
 				}
@@ -132,7 +133,7 @@ describe('List', () => {
 		}
 		const model = OboModel.create({
 			id: 'id',
-			type: 'ObojoboDraft.Chunks.List',
+			type: LIST_NODE,
 			content: {
 				textGroup: [
 					{
@@ -162,16 +163,16 @@ describe('List', () => {
 					}
 				],
 				listStyles: {
-					type: 'ordered',
+					type: ORDERED,
 					indents: {
 						'2': {
-							type: 'unordered',
-							bulletStyle: 'square'
+							type: UNORDERED,
+							bulletStyle: SQUARE
 						},
 						'4': {
-							type: 'ordered',
+							type: ORDERED,
 							start: '10',
-							bulletStyle: 'upper-alpha'
+							bulletStyle: UPPER_ALPHA
 						}
 					}
 				}
@@ -190,7 +191,7 @@ describe('List', () => {
 		}
 		const model = OboModel.create({
 			id: 'id',
-			type: 'ObojoboDraft.Chunks.List',
+			type: LIST_NODE,
 			content: {
 				textGroup: [
 					{
@@ -247,16 +248,16 @@ describe('List', () => {
 					}
 				],
 				listStyles: {
-					type: 'ordered',
+					type: ORDERED,
 					indents: {
 						'2': {
-							type: 'unordered',
-							bulletStyle: 'square'
+							type: UNORDERED,
+							bulletStyle: SQUARE
 						},
 						'4': {
-							type: 'ordered',
+							type: ORDERED,
 							start: '10',
-							bulletStyle: 'upper-alpha'
+							bulletStyle: UPPER_ALPHA
 						}
 					}
 				}

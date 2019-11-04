@@ -1,6 +1,7 @@
 import ListStyles from './list-styles'
 
 import Common from 'obojobo-document-engine/src/scripts/common'
+import { UNORDERED } from './constants'
 
 const { TextGroupAdapter } = Common.chunk.textChunk
 
@@ -11,7 +12,7 @@ const Adapter = {
 		if (attrs && attrs.content && attrs.content.listStyles) {
 			model.modelState.listStyles = ListStyles.fromDescriptor(attrs.content.listStyles)
 		} else {
-			model.modelState.listStyles = new ListStyles('unordered')
+			model.modelState.listStyles = new ListStyles(UNORDERED)
 		}
 	},
 

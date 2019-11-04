@@ -3,6 +3,7 @@ import './viewer-component.scss'
 import Common from 'obojobo-document-engine/src/scripts/common'
 import React from 'react'
 import Viewer from 'obojobo-document-engine/src/scripts/viewer'
+import { UNORDERED } from './constants'
 
 const { TextChunk } = Common.chunk
 const { TextGroupEl } = Common.chunk.textChunk
@@ -13,7 +14,7 @@ const { MockTextNode } = Common.mockDOM
 const createMockListElement = (data, indentLevel) => {
 	const style = data.listStyles.get(indentLevel)
 
-	const tag = style.type === 'unordered' ? 'ul' : 'ol'
+	const tag = style.type === UNORDERED ? 'ul' : 'ol'
 	const el = new MockElement(tag)
 	el.start = style.start
 	el._listStyleType = style.bulletStyle

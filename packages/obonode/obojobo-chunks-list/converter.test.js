@@ -1,7 +1,7 @@
 jest.mock('obojobo-document-engine/src/scripts/oboeditor/util/text-util')
 
 import Converter from './converter'
-const LIST_LEVEL_NODE = 'ObojoboDraft.Chunks.List.Level'
+import { LIST_LEVEL_NODE, UNORDERED } from './constants'
 
 describe('List Converter', () => {
 	test('slateToObo converts a Slate node to an OboNode with content', () => {
@@ -95,7 +95,7 @@ describe('List Converter', () => {
 			type: 'mockType',
 			content: {
 				listStyles: {
-					type: 'unordered',
+					type: UNORDERED,
 					indents: {}
 				},
 				textGroup: [

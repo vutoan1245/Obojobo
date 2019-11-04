@@ -1,4 +1,16 @@
 import ListStyles from './list-styles'
+import {
+	CIRCLE,
+	DISC,
+	DECIMAL,
+	ORDERED,
+	UNORDERED,
+	SQUARE,
+	LOWER_ALPHA,
+	LOWER_ROMAN,
+	UPPER_ALPHA,
+	UPPER_ROMAN
+} from './constants'
 
 describe('List Styles', () => {
 	test('List Styles creates an instance with expected values', () => {
@@ -12,7 +24,7 @@ describe('List Styles', () => {
 		const ls = new ListStyles('type')
 		ls.init()
 
-		expect(ls.type).toBe('unordered')
+		expect(ls.type).toBe(UNORDERED)
 		expect(ls.styles).toEqual({})
 	})
 
@@ -27,7 +39,7 @@ describe('List Styles', () => {
 		})
 
 		expect(ls.toDescriptor()).toEqual({
-			type: 'unordered',
+			type: UNORDERED,
 			indents: {
 				'5': {
 					type: 'type',
@@ -43,9 +55,9 @@ describe('List Styles', () => {
 		ls.init()
 
 		expect(ls.get(0).toDescriptor()).toEqual({
-			type: 'unordered',
+			type: UNORDERED,
 			start: 1,
-			bulletStyle: 'disc'
+			bulletStyle: DISC
 		})
 	})
 
@@ -54,25 +66,25 @@ describe('List Styles', () => {
 		ls.init()
 
 		ls.set(5, {
-			type: 'ordered',
+			type: ORDERED,
 			start: 10,
-			bulletStyle: 'upper-roman'
+			bulletStyle: UPPER_ROMAN
 		})
 
 		ls.set(6, {
-			type: 'ordered'
+			type: ORDERED
 		})
 
 		expect(ls.get(5).toDescriptor()).toEqual({
-			type: 'ordered',
+			type: ORDERED,
 			start: 10,
-			bulletStyle: 'upper-roman'
+			bulletStyle: UPPER_ROMAN
 		})
 
 		expect(ls.get(6).toDescriptor()).toEqual({
-			type: 'ordered',
+			type: ORDERED,
 			start: 1,
-			bulletStyle: 'upper-alpha'
+			bulletStyle: UPPER_ALPHA
 		})
 	})
 
@@ -92,135 +104,135 @@ describe('List Styles', () => {
 		ls.init()
 
 		ls.set(5, {
-			type: 'ordered',
+			type: ORDERED,
 			start: 10,
-			bulletStyle: 'upper-roman'
+			bulletStyle: UPPER_ROMAN
 		})
 
 		ls.set(6, {
-			type: 'ordered'
+			type: ORDERED
 		})
 
 		expect(ls.getSetStyles(5).toDescriptor()).toEqual({
-			type: 'ordered',
+			type: ORDERED,
 			start: 10,
-			bulletStyle: 'upper-roman'
+			bulletStyle: UPPER_ROMAN
 		})
 
 		expect(ls.getSetStyles(6).toDescriptor()).toEqual({
-			type: 'ordered',
+			type: ORDERED,
 			start: null,
 			bulletStyle: null
 		})
 	})
 
 	test('toDescriptor returns unordered styles', () => {
-		const ls = new ListStyles('unordered')
+		const ls = new ListStyles(UNORDERED)
 
 		expect(ls.get(0).toDescriptor()).toEqual({
-			type: 'unordered',
+			type: UNORDERED,
 			start: 1,
-			bulletStyle: 'disc'
+			bulletStyle: DISC
 		})
 
 		expect(ls.get(1).toDescriptor()).toEqual({
-			type: 'unordered',
+			type: UNORDERED,
 			start: 1,
-			bulletStyle: 'circle'
+			bulletStyle: CIRCLE
 		})
 
 		expect(ls.get(2).toDescriptor()).toEqual({
-			type: 'unordered',
+			type: UNORDERED,
 			start: 1,
-			bulletStyle: 'square'
+			bulletStyle: SQUARE
 		})
 
 		expect(ls.get(3).toDescriptor()).toEqual({
-			type: 'unordered',
+			type: UNORDERED,
 			start: 1,
-			bulletStyle: 'disc'
+			bulletStyle: DISC
 		})
 
 		expect(ls.get(4).toDescriptor()).toEqual({
-			type: 'unordered',
+			type: UNORDERED,
 			start: 1,
-			bulletStyle: 'circle'
+			bulletStyle: CIRCLE
 		})
 
 		expect(ls.get(5).toDescriptor()).toEqual({
-			type: 'unordered',
+			type: UNORDERED,
 			start: 1,
-			bulletStyle: 'square'
+			bulletStyle: SQUARE
 		})
 
 		expect(ls.get(6).toDescriptor()).toEqual({
-			type: 'unordered',
+			type: UNORDERED,
 			start: 1,
-			bulletStyle: 'disc'
+			bulletStyle: DISC
 		})
 	})
 
 	test('toDescriptor returns ordered styles', () => {
-		const ls = new ListStyles('ordered')
+		const ls = new ListStyles(ORDERED)
 
 		expect(ls.get(0).toDescriptor()).toEqual({
-			type: 'ordered',
+			type: ORDERED,
 			start: 1,
-			bulletStyle: 'decimal'
+			bulletStyle: DECIMAL
 		})
 
 		expect(ls.get(1).toDescriptor()).toEqual({
-			type: 'ordered',
+			type: ORDERED,
 			start: 1,
-			bulletStyle: 'upper-alpha'
+			bulletStyle: UPPER_ALPHA
 		})
 
 		expect(ls.get(2).toDescriptor()).toEqual({
-			type: 'ordered',
+			type: ORDERED,
 			start: 1,
-			bulletStyle: 'upper-roman'
+			bulletStyle: UPPER_ROMAN
 		})
 
 		expect(ls.get(3).toDescriptor()).toEqual({
-			type: 'ordered',
+			type: ORDERED,
 			start: 1,
-			bulletStyle: 'lower-alpha'
+			bulletStyle: LOWER_ALPHA
 		})
 
 		expect(ls.get(4).toDescriptor()).toEqual({
-			type: 'ordered',
+			type: ORDERED,
 			start: 1,
-			bulletStyle: 'lower-roman'
+			bulletStyle: LOWER_ROMAN
 		})
 
 		expect(ls.get(5).toDescriptor()).toEqual({
-			type: 'ordered',
+			type: ORDERED,
 			start: 1,
-			bulletStyle: 'decimal'
+			bulletStyle: DECIMAL
 		})
 
 		expect(ls.get(6).toDescriptor()).toEqual({
-			type: 'ordered',
+			type: ORDERED,
 			start: 1,
-			bulletStyle: 'upper-alpha'
+			bulletStyle: UPPER_ALPHA
 		})
 
 		expect(ls.get(7).toDescriptor()).toEqual({
-			type: 'ordered',
+			type: ORDERED,
 			start: 1,
-			bulletStyle: 'upper-roman'
+			bulletStyle: UPPER_ROMAN
 		})
 
 		expect(ls.get(8).toDescriptor()).toEqual({
-			type: 'ordered',
+			type: ORDERED,
 			start: 1,
-			bulletStyle: 'lower-alpha'
+			bulletStyle: LOWER_ALPHA
 		})
 
 		expect(ls.get(9).toDescriptor()).toEqual({
-			type: 'ordered',
+			type: ORDERED,
 			start: 1,
-			bulletStyle: 'lower-roman'
+			bulletStyle: LOWER_ROMAN
 		})
 	})
 

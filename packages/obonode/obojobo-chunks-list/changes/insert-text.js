@@ -1,5 +1,6 @@
+import { LIST_LEVEL_NODE } from '../constants'
+
 const TEXT_NODE = 'ObojoboDraft.Chunks.Text'
-const LIST_LEVEL_NODE = 'ObojoboDraft.Chunks.List.Level'
 
 const insertText = (event, editor, next) => {
 	event.preventDefault()

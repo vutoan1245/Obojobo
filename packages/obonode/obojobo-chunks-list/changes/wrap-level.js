@@ -1,4 +1,4 @@
-const LIST_LEVEL_NODE = 'ObojoboDraft.Chunks.List.Level'
+import { LIST_LEVEL_NODE } from '../constants'
 
 const wrapLevel = (event, editor) => {
 	event.preventDefault()

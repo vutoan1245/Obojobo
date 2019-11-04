@@ -1,17 +1,19 @@
 import { Block } from 'slate'
 import SchemaViolations from 'obojobo-document-engine/src/scripts/oboeditor/util/schema-violations'
+import {
+	LIST_NODE,
+	LIST_LINE_NODE,
+	LIST_LEVEL_NODE,
+	UNORDERED,
+	unorderedBullets,
+	orderedBullets
+} from './constants'
 
 const { CHILD_TYPE_INVALID, CHILD_MIN_INVALID } = SchemaViolations
 
-const LIST_LINE_NODE = 'ObojoboDraft.Chunks.List.Line'
-const LIST_LEVEL_NODE = 'ObojoboDraft.Chunks.List.Level'
-
-const unorderedBullets = ['disc', 'circle', 'square']
-const orderedBullets = ['decimal', 'upper-alpha', 'upper-roman', 'lower-alpha', 'lower-roman']
-
 const schema = {
 	blocks: {
-		'ObojoboDraft.Chunks.List': {
+		[LIST_NODE]: {
 			nodes: [
 				{
 					match: [{ type: LIST_LEVEL_NODE }],
@@ -22,7 +24,7 @@ const schema = {
 				const { node, child, index } = error
 				// find type and bullet style
 				const type = node.data.get('content').listStyles.type
-				const bulletList = type === 'unordered' ? unorderedBullets : orderedBullets
+				const bulletList = type === UNORDERED ? unorderedBullets : orderedBullets
 
 				switch (error.code) {
 					case CHILD_TYPE_INVALID: {
@@ -47,7 +49,7 @@ const schema = {
 				}
 			}
 		},
-		'ObojoboDraft.Chunks.List.Level': {
+		[LIST_LEVEL_NODE]: {
 			nodes: [
 				{
 					match: [{ type: LIST_LEVEL_NODE }, { type: LIST_LINE_NODE }],
@@ -77,7 +79,7 @@ const schema = {
 				}
 			}
 		},
-		'ObojoboDraft.Chunks.List.Line': {
+		[LIST_LINE_NODE]: {
 			nodes: [{ match: [{ object: 'text' }] }]
 		}
 	}

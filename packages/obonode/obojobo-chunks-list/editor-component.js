@@ -4,13 +4,9 @@ import './editor-component.scss'
 import React from 'react'
 import Common from 'obojobo-document-engine/src/scripts/common'
 import Node from 'obojobo-document-engine/src/scripts/oboeditor/components/node/editor-component'
+import { LIST_LEVEL_NODE, ORDERED, UNORDERED, unorderedBullets, orderedBullets } from './constants'
 
 const { Button } = Common.components
-
-const LIST_LEVEL_NODE = 'ObojoboDraft.Chunks.List.Level'
-
-const unorderedBullets = ['disc', 'circle', 'square']
-const orderedBullets = ['decimal', 'upper-alpha', 'upper-roman', 'lower-alpha', 'lower-roman']
 
 class List extends React.Component {
 	constructor(props) {
@@ -19,7 +15,7 @@ class List extends React.Component {
 
 	toggleType() {
 		const content = this.props.node.data.get('content')
-		content.listStyles.type = content.listStyles.type === 'unordered' ? 'ordered' : 'unordered'
+		content.listStyles.type = content.listStyles.type === UNORDERED ? ORDERED : UNORDERED
 
 		const levels = this.props.node.filterDescendants(desc => desc.type === LIST_LEVEL_NODE)
 
@@ -28,9 +24,9 @@ class List extends React.Component {
 		levels.forEach(levelNode => {
 			const levelContent = levelNode.data.get('content')
 			levelContent.type = content.listStyles.type
-			const bulletList = content.listStyles.type === 'unordered' ? unorderedBullets : orderedBullets
+			const bulletList = content.listStyles.type === UNORDERED ? unorderedBullets : orderedBullets
 			const previousBulletList =
-				content.listStyles.type === 'unordered' ? orderedBullets : unorderedBullets
+				content.listStyles.type === UNORDERED ? orderedBullets : unorderedBullets
 
 			// bullet style will be different depending on tab indentation
 			// the index of the current bullet style is preserved between toggling
@@ -46,7 +42,7 @@ class List extends React.Component {
 
 	render() {
 		const type = this.props.node.data.get('content').listStyles.type
-		const other = type === 'ordered' ? 'Unordered' : 'Ordered'
+		const other = type === ORDERED ? 'Unordered' : 'Ordered'
 		return (
 			<Node {...this.props}>
 				<div className={'text-chunk obojobo-draft--chunks--list pad'}>
