@@ -5,11 +5,10 @@ import Icon from './icon'
 import Node from './editor-component'
 import Schema from './schema'
 import Converter from './converter'
-
-const MATH_NODE = 'ObojoboDraft.Chunks.MathEquation'
+import { MATHEQUATION_NODE } from './constants'
 
 const MathEquation = {
-	name: MATH_NODE,
+	name: MATHEQUATION_NODE,
 	menuLabel: 'Math Equation',
 	icon: Icon,
 	isInsertable: true,
@@ -20,7 +19,7 @@ const MathEquation = {
 	plugins: {
 		renderNode(props, editor, next) {
 			switch (props.node.type) {
-				case MATH_NODE:
+				case MATHEQUATION_NODE:
 					return <Node {...props} {...props.attributes} />
 				default:
 					return next()

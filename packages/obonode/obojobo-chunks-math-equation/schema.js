@@ -1,6 +1,8 @@
+import { MATHEQUATION_NODE } from './constants'
+
 const schema = {
 	blocks: {
-		'ObojoboDraft.Chunks.MathEquation': {
+		[MATHEQUATION_NODE]: {
 			isVoid: true
 		}
 	}

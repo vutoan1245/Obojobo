@@ -1,6 +1,5 @@
 import MathEquation from './editor-registration'
-
-const MATHEQUATION_NODE = 'ObojoboDraft.Chunks.MathEquation'
+import { MATHEQUATION_NODE } from './constants'
 
 describe('MathEquation editor', () => {
 	test('plugins.renderNode renders a button when passed', () => {

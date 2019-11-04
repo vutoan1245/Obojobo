@@ -3,6 +3,7 @@ import MathEquation from './viewer-component'
 import OboModel from 'obojobo-document-engine/src/scripts/common/models/obo-model'
 import React from 'react'
 import renderer from 'react-test-renderer'
+import { MATHEQUATION_NODE } from './constants'
 
 require('./viewer') // used to register this oboModel
 
@@ -13,7 +14,7 @@ describe('MathEquation', () => {
 		}
 		const model = OboModel.create({
 			id: 'id',
-			type: 'ObojoboDraft.Chunks.MathEquation',
+			type: MATHEQUATION_NODE,
 			content: {
 				latex: 'y=\\frac{1}{x}'
 			}
@@ -31,7 +32,7 @@ describe('MathEquation', () => {
 		}
 		const model = OboModel.create({
 			id: 'id',
-			type: 'ObojoboDraft.Chunks.MathEquation',
+			type: MATHEQUATION_NODE,
 			content: {
 				label: 'mockLabel',
 				latex: 'y=\\frac{1}{x}'
@@ -48,7 +49,7 @@ describe('MathEquation', () => {
 		const moduleData = { focusState: {} }
 		const model = OboModel.create({
 			id: 'id',
-			type: 'ObojoboDraft.Chunks.MathEquation',
+			type: MATHEQUATION_NODE,
 			content: {
 				alt: 'y equals 1 over x',
 				latex: 'y=\\frac{1}{x}'
@@ -65,7 +66,7 @@ describe('MathEquation', () => {
 		const moduleData = { focusState: {} }
 		const model = OboModel.create({
 			id: 'id',
-			type: 'ObojoboDraft.Chunks.MathEquation',
+			type: MATHEQUATION_NODE,
 			content: {
 				alt: 'y equals 1 over x',
 				label: 'mockLabel',
@@ -85,7 +86,7 @@ describe('MathEquation', () => {
 		}
 		const model = OboModel.create({
 			id: 'id',
-			type: 'ObojoboDraft.Chunks.MathEquation',
+			type: MATHEQUATION_NODE,
 			label: 'mockLabel',
 			content: {
 				latex: '\\\\'
