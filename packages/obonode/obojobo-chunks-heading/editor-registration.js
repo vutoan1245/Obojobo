@@ -5,8 +5,7 @@ import Icon from './icon'
 import Node from './editor-component'
 import Schema from './schema'
 import Converter from './converter'
-
-const HEADING_NODE = 'ObojoboDraft.Chunks.Heading'
+import { HEADING_NODE } from './constants'
 
 const Heading = {
 	name: HEADING_NODE,

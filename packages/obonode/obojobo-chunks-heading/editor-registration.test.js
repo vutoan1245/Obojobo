@@ -1,5 +1,5 @@
 import Heading from './editor-registration'
-const HEADING_NODE = 'ObojoboDraft.Chunks.Heading'
+import { HEADING_NODE } from './constants'
 
 describe('Heading editor', () => {
 	test('plugins.renderNode renders Heading when passed', () => {

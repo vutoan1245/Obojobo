@@ -3,6 +3,7 @@ import renderer from 'react-test-renderer'
 
 import Heading from './viewer-component'
 import OboModel from 'obojobo-document-engine/src/scripts/common/models/obo-model'
+import { HEADING_NODE } from './constants'
 
 require('./viewer') // used to register this oboModel
 
@@ -13,7 +14,7 @@ describe('Heading', () => {
 		}
 		const model = OboModel.create({
 			id: 'id',
-			type: 'ObojoboDraft.Chunks.Heading',
+			type: HEADING_NODE,
 			content: {
 				headingLevel: 1,
 				textGroup: [
@@ -38,7 +39,7 @@ describe('Heading', () => {
 		}
 		const model = OboModel.create({
 			id: 'id',
-			type: 'ObojoboDraft.Chunks.Heading',
+			type: HEADING_NODE,
 			content: {
 				headingLevel: 2,
 				textGroup: [
@@ -63,7 +64,7 @@ describe('Heading', () => {
 		}
 		const model = OboModel.create({
 			id: 'id',
-			type: 'ObojoboDraft.Chunks.Heading',
+			type: HEADING_NODE,
 			content: {
 				headingLevel: 3,
 				textGroup: [

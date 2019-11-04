@@ -1,6 +1,8 @@
+import { HEADING_NODE } from './constants'
+
 const schema = {
 	blocks: {
-		'ObojoboDraft.Chunks.Heading': {
+		[HEADING_NODE]: {
 			nodes: [
 				{
 					match: [{ object: 'text' }],
