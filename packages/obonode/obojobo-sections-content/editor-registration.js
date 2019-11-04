@@ -1,4 +1,4 @@
-const CONTENT_NODE = 'ObojoboDraft.Sections.Content'
+import { CONTENT_NODE } from './constants'
 
 const Content = {
 	name: CONTENT_NODE,

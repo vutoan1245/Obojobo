@@ -6,6 +6,7 @@ jest.mock('obojobo-document-engine/src/scripts/viewer/util/nav-util')
 import Content from './viewer-component'
 import OboModel from 'obojobo-document-engine/src/scripts/common/models/obo-model'
 import NavUtil from 'obojobo-document-engine/src/scripts/viewer/util/nav-util'
+import { CONTENT_NODE } from './constants'
 
 require('./viewer') // used to register this oboModel
 
@@ -13,7 +14,7 @@ describe('Content', () => {
 	test('Content component', () => {
 		const model = OboModel.create({
 			id: 'id',
-			type: 'ObojoboDraft.Sections.Content',
+			type: CONTENT_NODE,
 			children: [
 				{
 					id: 'page',
@@ -44,7 +45,7 @@ describe('Content', () => {
 	test('Content component with nav model', () => {
 		const model = OboModel.create({
 			id: 'id',
-			type: 'ObojoboDraft.Sections.Content',
+			type: CONTENT_NODE,
 			children: [
 				{
 					id: 'page',
