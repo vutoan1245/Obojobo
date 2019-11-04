@@ -3,8 +3,7 @@ import React from 'react'
 import Node from './editor-component'
 import Schema from './schema'
 import Converter from './converter'
-
-const PAGE_NODE = 'ObojoboDraft.Pages.Page'
+import { PAGE_NODE } from './constants'
 
 const Page = {
 	name: PAGE_NODE,
@@ -29,9 +28,7 @@ const Page = {
 		if (model.title) {
 			label = model.title
 		} else {
-			const pages = model.parent.children.models.filter(
-				child => child.get('type') === 'ObojoboDraft.Pages.Page'
-			)
+			const pages = model.parent.children.models.filter(child => child.get('type') === PAGE_NODE)
 			label = `Page ${pages.indexOf(model) + 1}`
 		}
 

@@ -1,7 +1,7 @@
 import Schema from './schema'
 import SchemaViolations from 'obojobo-document-engine/src/scripts/oboeditor/util/schema-violations'
+import { PAGE_NODE } from './constants'
 
-const PAGE_NODE = 'ObojoboDraft.Pages.Page'
 const { CHILD_TYPE_INVALID, CHILD_MIN_INVALID } = SchemaViolations
 
 describe('Page editor schema', () => {

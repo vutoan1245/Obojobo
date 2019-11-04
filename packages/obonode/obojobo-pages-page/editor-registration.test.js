@@ -9,8 +9,7 @@ jest.mock('./schema', () => ({ mock: 'schema' }))
 jest.mock('./converter', () => ({ mock: 'converter' }))
 
 import Page from './editor-registration'
-
-const PAGE_NODE = 'ObojoboDraft.Pages.Page'
+import { PAGE_NODE } from './constants'
 
 describe('Page editor', () => {
 	test('plugins.renderNode renders a solution when passed', () => {

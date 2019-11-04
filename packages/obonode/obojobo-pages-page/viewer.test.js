@@ -11,11 +11,12 @@ const Common = require('obojobo-document-engine/src/scripts/common/index')
 // include the script we're testing, it registers the model
 import './viewer'
 import ViewerComponent from './viewer-component'
+import { PAGE_NODE } from './constants'
 
-describe('ObojoboDraft.Pages.Page registration', () => {
+describe(`${PAGE_NODE} registration`, () => {
 	test('registerModel registers expected vars', () => {
 		const register = Common.Registry.registerModel.mock.calls[0]
-		expect(register[0]).toBe('ObojoboDraft.Pages.Page')
+		expect(register[0]).toBe(PAGE_NODE)
 		expect(register[1]).toHaveProperty('type', 'page')
 		expect(register[1]).toHaveProperty('componentClass', ViewerComponent)
 	})
@@ -24,7 +25,7 @@ describe('ObojoboDraft.Pages.Page registration', () => {
 		const register = Common.Registry.registerModel.mock.calls[0]
 		const model = {
 			title: null,
-			get: () => 'ObojoboDraft.Pages.Page',
+			get: () => PAGE_NODE,
 			parent: {
 				children: {
 					models: [
@@ -32,7 +33,7 @@ describe('ObojoboDraft.Pages.Page registration', () => {
 							get: () => 'not a page'
 						},
 						{
-							get: () => 'ObojoboDraft.Pages.Page'
+							get: () => PAGE_NODE
 						}
 					]
 				}

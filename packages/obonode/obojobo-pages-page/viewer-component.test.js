@@ -8,6 +8,7 @@ jest.mock('obojobo-document-engine/src/scripts/common/page/focus')
 import Page from './viewer-component'
 import OboModel from 'obojobo-document-engine/src/scripts/common/models/obo-model'
 import FocusUtil from 'obojobo-document-engine/src/scripts/viewer/util/focus-util'
+import { PAGE_NODE } from './constants'
 
 require('./viewer') // used to register this oboModel
 require('obojobo-chunks-break/viewer') // // dependency on Obojobo.Chunks.Break
@@ -20,7 +21,7 @@ describe('Page', () => {
 	test('Page component', () => {
 		const model = OboModel.create({
 			id: 'id',
-			type: 'ObojoboDraft.Pages.Page',
+			type: PAGE_NODE,
 			children: [
 				{
 					id: 'child',
