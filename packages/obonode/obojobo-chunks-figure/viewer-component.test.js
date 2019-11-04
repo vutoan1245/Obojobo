@@ -3,6 +3,7 @@ import renderer from 'react-test-renderer'
 
 import Figure from './viewer-component'
 import OboModel from 'obojobo-document-engine/src/scripts/common/models/obo-model'
+import { FIGURE_NODE } from './constants'
 
 require('./viewer') // used to register this oboModel
 
@@ -13,7 +14,7 @@ describe('Figure', () => {
 		}
 		const model = OboModel.create({
 			id: 'id',
-			type: 'ObojoboDraft.Chunks.Figure',
+			type: FIGURE_NODE,
 			content: {
 				alt: 'Alt Text',
 				url: 'www.example.com/img.jpg',
@@ -42,7 +43,7 @@ describe('Figure', () => {
 		}
 		const model = OboModel.create({
 			id: 'id',
-			type: 'ObojoboDraft.Chunks.Figure',
+			type: FIGURE_NODE,
 			content: {
 				alt: 'Alt Text',
 				url: 'www.example.com/img.jpg',

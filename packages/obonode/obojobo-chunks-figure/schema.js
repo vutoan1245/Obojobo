@@ -1,6 +1,8 @@
+import { FIGURE_NODE } from './constants'
+
 const schema = {
 	blocks: {
-		'ObojoboDraft.Chunks.Figure': {
+		[FIGURE_NODE]: {
 			nodes: [
 				{
 					match: [{ object: 'text' }],

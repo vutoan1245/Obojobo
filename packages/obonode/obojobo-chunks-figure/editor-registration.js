@@ -4,8 +4,7 @@ import Icon from './icon'
 import Node from './editor-component'
 import Schema from './schema'
 import Converter from './converter'
-
-const FIGURE_NODE = 'ObojoboDraft.Chunks.Figure'
+import { FIGURE_NODE } from './constants'
 
 const Figure = {
 	name: FIGURE_NODE,

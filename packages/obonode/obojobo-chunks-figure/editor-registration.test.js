@@ -1,7 +1,7 @@
 jest.mock('obojobo-document-engine/src/scripts/oboeditor/util/text-util')
 
 import Figure from './editor-registration'
-const FIGURE_NODE = 'ObojoboDraft.Chunks.Figure'
+import { FIGURE_NODE } from './constants'
 
 describe('Figure editor', () => {
 	test('plugins.renderNode renders a button when passed', () => {
