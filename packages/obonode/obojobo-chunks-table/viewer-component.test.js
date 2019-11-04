@@ -3,6 +3,7 @@ import renderer from 'react-test-renderer'
 
 import Table from './viewer-component'
 import OboModel from 'obojobo-document-engine/src/scripts/common/models/obo-model'
+import { TABLE_NODE } from './constants'
 
 require('./viewer') // used to register this oboModel
 

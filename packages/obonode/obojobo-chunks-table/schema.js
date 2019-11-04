@@ -1,15 +1,13 @@
 import { Block } from 'slate'
 
 import SchemaViolations from 'obojobo-document-engine/src/scripts/oboeditor/util/schema-violations'
+import { TABLE_NODE, TABLE_CELL_NODE, TABLE_ROW_NODE } from './constants'
 
 const { CHILD_TYPE_INVALID, CHILD_MIN_INVALID } = SchemaViolations
 
-const TABLE_ROW_NODE = 'ObojoboDraft.Chunks.Table.Row'
-const TABLE_CELL_NODE = 'ObojoboDraft.Chunks.Table.Cell'
-
 const schema = {
 	blocks: {
-		'ObojoboDraft.Chunks.Table': {
+		[TABLE_NODE]: {
 			nodes: [
 				{
 					match: [{ type: TABLE_ROW_NODE }],
@@ -47,7 +45,7 @@ const schema = {
 				}
 			}
 		},
-		'ObojoboDraft.Chunks.Table.Row': {
+		[TABLE_ROW_NODE]: {
 			nodes: [
 				{
 					match: [{ type: TABLE_CELL_NODE }],
@@ -84,7 +82,7 @@ const schema = {
 				}
 			}
 		},
-		'ObojoboDraft.Chunks.Table.Cell': {
+		[TABLE_CELL_NODE]: {
 			nodes: [{ match: [{ object: 'text' }] }],
 			normalize: (editor, error) => {
 				const { node, child, index } = error

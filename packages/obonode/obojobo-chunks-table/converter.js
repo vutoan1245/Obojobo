@@ -1,7 +1,5 @@
 import TextUtil from 'obojobo-document-engine/src/scripts/oboeditor/util/text-util'
-
-const TABLE_ROW_NODE = 'ObojoboDraft.Chunks.Table.Row'
-const TABLE_CELL_NODE = 'ObojoboDraft.Chunks.Table.Cell'
+import { TABLE_ROW_NODE, TABLE_CELL_NODE } from './constants'
 
 const slateToObo = node => {
 	const content = node.data.get('content') || { textGroup: {} }

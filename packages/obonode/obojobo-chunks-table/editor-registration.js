@@ -9,10 +9,7 @@ import Row from './components/row/editor-component'
 import Cell from './components/cell/editor-component'
 import Schema from './schema'
 import Converter from './converter'
-
-const TABLE_NODE = 'ObojoboDraft.Chunks.Table'
-const TABLE_ROW_NODE = 'ObojoboDraft.Chunks.Table.Row'
-const TABLE_CELL_NODE = 'ObojoboDraft.Chunks.Table.Cell'
+import { TABLE_NODE, TABLE_ROW_NODE, TABLE_CELL_NODE } from './constants'
 
 const isType = editor =>
 	editor.value.blocks.some(
@@ -86,7 +83,7 @@ const plugins = {
 				for (let i = node.nodes.size; i < numCols; i++) {
 					editor.insertNodeByKey(node.key, i, {
 						object: 'block',
-						type: 'ObojoboDraft.Chunks.Table.Cell',
+						type: TABLE_CELL_NODE,
 						data: { content: { header } },
 						nodes: [
 							{
