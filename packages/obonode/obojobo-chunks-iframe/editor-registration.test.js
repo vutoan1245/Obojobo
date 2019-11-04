@@ -1,6 +1,5 @@
 import IFrame from './editor-registration'
-
-const IFRAME_NODE = 'ObojoboDraft.Chunks.IFrame'
+import { IFRAME_NODE } from './constants'
 
 describe('IFrame editor', () => {
 	test('plugins.renderNode renders a button when passed', () => {

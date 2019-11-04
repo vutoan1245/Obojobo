@@ -9,6 +9,7 @@ import React from 'react'
 import ReactDOM from 'react-dom'
 import Viewer from 'obojobo-document-engine/src/scripts/viewer'
 import renderer from 'react-test-renderer'
+import { IFRAME_NODE } from './constants'
 
 const { FocusUtil, MediaUtil } = Viewer.util
 const { FocusStore, MediaStore } = Viewer.stores
@@ -57,7 +58,7 @@ describe('IFrame', () => {
 
 		model = OboModel.create({
 			id: 'mock-obo-id',
-			type: 'ObojoboDraft.Chunks.IFrame',
+			type: IFRAME_NODE,
 			content: {
 				src: 'http://www.example.com'
 			}
@@ -194,7 +195,7 @@ describe('IFrame', () => {
 
 		model = OboModel.create({
 			id: 'mock-obo-id',
-			type: 'ObojoboDraft.Chunks.IFrame',
+			type: IFRAME_NODE,
 			content: {
 				newWindowSrc: 'mocked-new-window-src'
 			}
@@ -247,7 +248,7 @@ describe('IFrame', () => {
 	test('onClickContainer not called if src is not set', () => {
 		model = OboModel.create({
 			id: 'mock-obo-id',
-			type: 'ObojoboDraft.Chunks.IFrame'
+			type: IFRAME_NODE
 		})
 
 		const component = mount(<IFrame model={model} moduleData={moduleData} />)
@@ -262,7 +263,7 @@ describe('IFrame', () => {
 	test('onClickContainer not called if iframe is loaded', () => {
 		model = OboModel.create({
 			id: 'mock-obo-id',
-			type: 'ObojoboDraft.Chunks.IFrame',
+			type: IFRAME_NODE,
 			content: {
 				src: 'mocked-src',
 				autoload: true
@@ -281,7 +282,7 @@ describe('IFrame', () => {
 	test('onClickSkipToBottom focuses on the buttonSkipToTop button', () => {
 		model = OboModel.create({
 			id: 'mock-obo-id',
-			type: 'ObojoboDraft.Chunks.IFrame',
+			type: IFRAME_NODE,
 			content: {
 				src: 'http://www.example.com/',
 				autoload: true
@@ -299,7 +300,7 @@ describe('IFrame', () => {
 	test('onClickSkipToTop focuses on the buttonSkipToBottom button', () => {
 		model = OboModel.create({
 			id: 'mock-obo-id',
-			type: 'ObojoboDraft.Chunks.IFrame',
+			type: IFRAME_NODE,
 			content: {
 				src: 'http://www.example.com/',
 				autoload: true
@@ -339,7 +340,7 @@ describe('IFrame', () => {
 	test('onClickReload clears out the src of the iframe then sets it back', () => {
 		model = OboModel.create({
 			id: 'mock-obo-id',
-			type: 'ObojoboDraft.Chunks.IFrame',
+			type: IFRAME_NODE,
 			content: {
 				src: 'http://www.example.com/',
 				autoload: true
@@ -431,7 +432,7 @@ describe('IFrame', () => {
 			<IFrame
 				model={OboModel.create({
 					id: 'mock-obo-id',
-					type: 'ObojoboDraft.Chunks.IFrame',
+					type: IFRAME_NODE,
 					content: {
 						src: 'http://www.example.com/',
 						autoload: true
@@ -448,7 +449,7 @@ describe('IFrame', () => {
 			<IFrame
 				model={OboModel.create({
 					id: 'mock-obo-id',
-					type: 'ObojoboDraft.Chunks.IFrame',
+					type: IFRAME_NODE,
 					content: {
 						src: 'http://www.example.com/',
 						autoload: false
@@ -465,7 +466,7 @@ describe('IFrame', () => {
 			<IFrame
 				model={OboModel.create({
 					id: 'mock-obo-id',
-					type: 'ObojoboDraft.Chunks.IFrame',
+					type: IFRAME_NODE,
 					content: {
 						src: 'http://www.example.com/',
 						autoload: true
@@ -482,7 +483,7 @@ describe('IFrame', () => {
 			<IFrame
 				model={OboModel.create({
 					id: 'mock-obo-id',
-					type: 'ObojoboDraft.Chunks.IFrame',
+					type: IFRAME_NODE,
 					content: {
 						src: 'http://www.example.com/',
 						autoload: false
@@ -567,7 +568,7 @@ describe('IFrame', () => {
 
 		model = OboModel.create({
 			id: 'mock-obo-id',
-			type: 'ObojoboDraft.Chunks.IFrame',
+			type: IFRAME_NODE,
 			content: {
 				src: 'http://www.example.com/',
 				autoload: true
@@ -579,7 +580,7 @@ describe('IFrame', () => {
 
 		model = OboModel.create({
 			id: 'mock-obo-id',
-			type: 'ObojoboDraft.Chunks.IFrame',
+			type: IFRAME_NODE,
 			content: {
 				src: 'https://www.example.com/',
 				autoload: true
@@ -591,7 +592,7 @@ describe('IFrame', () => {
 
 		model = OboModel.create({
 			id: 'mock-obo-id',
-			type: 'ObojoboDraft.Chunks.IFrame',
+			type: IFRAME_NODE,
 			content: {
 				src: '//www.example.com/',
 				autoload: true
@@ -603,7 +604,7 @@ describe('IFrame', () => {
 
 		model = OboModel.create({
 			id: 'mock-obo-id',
-			type: 'ObojoboDraft.Chunks.IFrame',
+			type: IFRAME_NODE,
 			content: {
 				src: 'www.example.com/',
 				autoload: true

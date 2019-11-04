@@ -5,8 +5,7 @@ import Icon from './icon'
 import Node from './editor-component'
 import Schema from './schema'
 import Converter from './converter'
-
-const IFRAME_NODE = 'ObojoboDraft.Chunks.IFrame'
+import { IFRAME_NODE } from './constants'
 
 const IFrame = {
 	name: IFRAME_NODE,

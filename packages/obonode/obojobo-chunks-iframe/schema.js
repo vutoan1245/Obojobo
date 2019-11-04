@@ -1,6 +1,8 @@
+import { IFRAME_NODE } from './constants'
+
 const schema = {
 	blocks: {
-		'ObojoboDraft.Chunks.IFrame': {
+		[IFRAME_NODE]: {
 			isVoid: true
 		}
 	}
