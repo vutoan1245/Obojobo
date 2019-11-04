@@ -2,19 +2,16 @@ import { Block } from 'slate'
 
 import emptyAssessment from './empty-assessment.json'
 import SchemaViolations from 'obojobo-document-engine/src/scripts/oboeditor/util/schema-violations'
+import { SOLUTION_NODE, MCASSESSMENT_NODE, PAGE_NODE, TEXT_NODE, QUESTION_NODE } from './constants'
 
 const { CHILD_TYPE_INVALID, CHILD_MIN_INVALID } = SchemaViolations
 
-const MCASSESSMENT_NODE = 'ObojoboDraft.Chunks.MCAssessment'
-const TEXT_NODE = 'ObojoboDraft.Chunks.Text'
-const SOLUTION_NODE = 'ObojoboDraft.Chunks.Question.Solution'
-const PAGE_NODE = 'ObojoboDraft.Pages.Page'
-
 const schema = {
 	blocks: {
-		'ObojoboDraft.Chunks.Question': {
+		[QUESTION_NODE]: {
 			nodes: [
-				{ match: [
+				{
+					match: [
 						{ type: 'ObojoboDraft.Chunks.ActionButton' },
 						{ type: 'ObojoboDraft.Chunks.Break' },
 						{ type: 'ObojoboDraft.Chunks.Code' },
@@ -27,7 +24,9 @@ const schema = {
 						{ type: 'ObojoboDraft.Chunks.Table' },
 						{ type: 'ObojoboDraft.Chunks.Text' },
 						{ type: 'ObojoboDraft.Chunks.YouTube' }
-					], min: 1 },
+					],
+					min: 1
+				},
 				{ match: [MCASSESSMENT_NODE], min: 1 },
 				{ match: [SOLUTION_NODE] }
 			],
@@ -63,7 +62,7 @@ const schema = {
 				}
 			}
 		},
-		'ObojoboDraft.Chunks.Question.Solution': {
+		[SOLUTION_NODE]: {
 			nodes: [
 				{
 					match: [{ type: PAGE_NODE }],

@@ -2,6 +2,7 @@ import React from 'react'
 import { mount } from 'enzyme'
 import renderer from 'react-test-renderer'
 import Question from './editor-component'
+import { SOLUTION_NODE, BREAK_NODE, MCASSESSMENT_NODE } from './constants'
 
 jest.mock('obojobo-document-engine/src/scripts/common', () => ({
 	Registry: {
@@ -23,16 +24,13 @@ jest.mock('obojobo-document-engine/src/scripts/common', () => ({
 			hide: jest.fn(),
 			show: jest.fn()
 		}
-	},
+	}
 }))
 
-jest.mock('obojobo-document-engine/src/scripts/oboeditor/components/node/editor-component', () => (
-	props => <div>{props.children}</div>
-))
-
-const SOLUTION_NODE = 'ObojoboDraft.Chunks.Question.Solution'
-const BREAK_NODE = 'ObojoboDraft.Chunks.Break'
-const MCASSESSMENT_NODE = 'ObojoboDraft.Chunks.MCAssessment'
+jest.mock(
+	'obojobo-document-engine/src/scripts/oboeditor/components/node/editor-component',
+	() => props => <div>{props.children}</div>
+)
 
 describe('Question Editor Node', () => {
 	beforeEach(() => {

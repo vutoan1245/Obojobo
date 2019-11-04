@@ -3,10 +3,7 @@ import { CHILD_TYPE_INVALID } from 'slate-schema-violations'
 import { Block } from 'slate'
 
 import Question from './editor-registration'
-const QUESTION_NODE = 'ObojoboDraft.Chunks.Question'
-const SOLUTION_NODE = 'ObojoboDraft.Chunks.Question.Solution'
-const MCASSESSMENT_NODE = 'ObojoboDraft.Chunks.MCAssessment'
-const CHOICE_LIST_NODE = 'ObojoboDraft.Chunks.MCAssessment.ChoiceList'
+import { QUESTION_NODE, SOLUTION_NODE, MCASSESSMENT_NODE, CHOICE_LIST_NODE } from './constants'
 
 jest.mock('obojobo-document-engine/src/scripts/common/index', () => ({
 	Registry: {

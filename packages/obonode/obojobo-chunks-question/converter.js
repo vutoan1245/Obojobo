@@ -1,9 +1,6 @@
 import Common from 'obojobo-document-engine/src/scripts/common'
 import Component from 'obojobo-document-engine/src/scripts/oboeditor/components/node/editor'
-
-const SOLUTION_NODE = 'ObojoboDraft.Chunks.Question.Solution'
-const MCASSESSMENT_NODE = 'ObojoboDraft.Chunks.MCAssessment'
-const PAGE_NODE = 'ObojoboDraft.Pages.Page'
+import { SOLUTION_NODE, MCASSESSMENT_NODE, PAGE_NODE } from './constants'
 
 const slateToObo = node => {
 	const children = []

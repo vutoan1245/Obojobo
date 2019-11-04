@@ -12,13 +12,12 @@ const Common = require('obojobo-document-engine/src/scripts/common/index')
 // include the script we're testing, it registers the model
 import './viewer'
 import ViewerComponent from './viewer-component'
+import { QUESTION_NODE } from './constants'
 
-const QUESTION_NODE_TYPE = 'ObojoboDraft.Chunks.Question'
-
-describe('ObojoboDraft.Chunks.Question registration', () => {
+describe(`${QUESTION_NODE} registration`, () => {
 	test('registerModel registers expected vars', () => {
 		const register = Common.Registry.registerModel.mock.calls[0]
-		expect(register[0]).toBe('ObojoboDraft.Chunks.Question')
+		expect(register[0]).toBe(QUESTION_NODE)
 		expect(register[1]).toHaveProperty('type', 'chunk')
 		expect(register[1]).toHaveProperty('adapter', {})
 		expect(register[1]).toHaveProperty('componentClass', ViewerComponent)
@@ -34,7 +33,7 @@ describe('ObojoboDraft.Chunks.Question registration', () => {
 				children: {
 					models: [
 						{
-							get: jest.fn().mockReturnValueOnce(QUESTION_NODE_TYPE)
+							get: jest.fn().mockReturnValueOnce(QUESTION_NODE)
 						},
 						{
 							get: jest.fn().mockReturnValueOnce('ObojoboDraft.Chunks.MockChild')
@@ -60,7 +59,7 @@ describe('ObojoboDraft.Chunks.Question registration', () => {
 				children: {
 					models: [
 						{
-							get: jest.fn().mockReturnValueOnce(QUESTION_NODE_TYPE)
+							get: jest.fn().mockReturnValueOnce(QUESTION_NODE)
 						},
 						{
 							get: jest.fn().mockReturnValueOnce('ObojoboDraft.Chunks.MockChild')
@@ -86,7 +85,7 @@ describe('ObojoboDraft.Chunks.Question registration', () => {
 				children: {
 					models: [
 						{
-							get: jest.fn().mockReturnValueOnce(QUESTION_NODE_TYPE)
+							get: jest.fn().mockReturnValueOnce(QUESTION_NODE)
 						},
 						{
 							get: jest.fn().mockReturnValueOnce('ObojoboDraft.Chunks.MockChild')
