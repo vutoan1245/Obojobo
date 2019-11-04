@@ -3,6 +3,7 @@ import renderer from 'react-test-renderer'
 
 import Table from './viewer-component'
 import OboModel from 'obojobo-document-engine/src/scripts/common/models/obo-model'
+import { TABLE_NODE } from './constants'
 
 require('./viewer') // used to register this oboModel
 
@@ -10,7 +11,7 @@ describe('Table', () => {
 	test('Table component', () => {
 		const model = OboModel.create({
 			id: 'id',
-			type: 'ObojoboDraft.Chunks.Table',
+			type: TABLE_NODE,
 			content: {
 				header: true,
 				textGroup: {
@@ -54,7 +55,7 @@ describe('Table', () => {
 	test('Table component without header', () => {
 		const model = OboModel.create({
 			id: 'id',
-			type: 'ObojoboDraft.Chunks.Table',
+			type: TABLE_NODE,
 			content: {
 				header: false,
 				textGroup: {

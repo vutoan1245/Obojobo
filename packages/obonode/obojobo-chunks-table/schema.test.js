@@ -2,10 +2,7 @@ import SchemaViolations from 'obojobo-document-engine/src/scripts/oboeditor/util
 const { CHILD_TYPE_INVALID, CHILD_MIN_INVALID } = SchemaViolations
 
 import Schema from './schema'
-
-const TABLE_NODE = 'ObojoboDraft.Chunks.Table'
-const TABLE_ROW_NODE = 'ObojoboDraft.Chunks.Table.Row'
-const TABLE_CELL_NODE = 'ObojoboDraft.Chunks.Table.Cell'
+import { TABLE_NODE, TABLE_ROW_NODE, TABLE_CELL_NODE } from './constants'
 
 describe('Table Schema', () => {
 	test('plugins.schema.normalize fixes last invalid child in table', () => {
