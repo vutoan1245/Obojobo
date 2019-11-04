@@ -1,7 +1,13 @@
+import { SELECT_SEQUENTIAL, SELECT_RANDOM, SELECT_RANDOM_UNSEEN } from './constants'
+
 const Adapter = {
 	construct(model) {
 		model.setStateProp('choose', Infinity, p => parseInt(p, 10) || Infinity)
-		model.setStateProp('select', 'sequential', p => p, ['sequential', 'random', 'random-unseen'])
+		model.setStateProp('select', SELECT_SEQUENTIAL, p => p, [
+			SELECT_SEQUENTIAL,
+			SELECT_RANDOM,
+			SELECT_RANDOM_UNSEEN
+		])
 	},
 
 	clone(model, clone) {

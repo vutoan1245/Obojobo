@@ -14,9 +14,7 @@ jest.mock('./schema', () => ({ mock: 'schema' }))
 jest.mock('./converter', () => ({ mock: 'converter' }))
 import Common from 'obojobo-document-engine/src/scripts/common'
 import QuestionBank from './editor-registration'
-const QUESTION_BANK_NODE = 'ObojoboDraft.Chunks.QuestionBank'
-const SETTINGS_NODE = 'ObojoboDraft.Chunks.QuestionBank.Settings'
-const QUESTION_NODE = 'ObojoboDraft.Chunks.Question'
+import { QUESTION_BANK_NODE, SETTINGS_NODE, QUESTION_NODE } from './constants'
 
 describe('QuestionBank editor', () => {
 	test('plugins.renderNode renders a question bank when passed', () => {
@@ -80,7 +78,7 @@ describe('QuestionBank editor', () => {
 	})
 
 	test('plugins.getPasteNode returns question', () => {
-		const question = { 'type': QUESTION_NODE }
+		const question = { type: QUESTION_NODE }
 		const qb = {
 			nodes: {
 				size: 1,
@@ -101,7 +99,7 @@ describe('QuestionBank editor', () => {
 						{
 							nodes: [
 								{
-									toJSON:() => ({ object: 'block', type: 'mockNode' })
+									toJSON: () => ({ object: 'block', type: 'mockNode' })
 								}
 							]
 						}

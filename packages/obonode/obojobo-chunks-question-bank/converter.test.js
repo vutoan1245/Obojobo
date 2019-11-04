@@ -11,9 +11,7 @@ jest.mock('obojobo-document-engine/src/scripts/common/index', () => ({
 }))
 
 import Converter from './converter'
-const QUESTION_BANK_NODE = 'ObojoboDraft.Chunks.QuestionBank'
-const SETTINGS_NODE = 'ObojoboDraft.Chunks.QuestionBank.Settings'
-const QUESTION_NODE = 'ObojoboDraft.Chunks.Question'
+import { QUESTION_BANK_NODE, SETTINGS_NODE, QUESTION_NODE } from './constants'
 
 describe('QuestionBank editor', () => {
 	test('slateToObo converts a Slate node to an OboNode with content', () => {

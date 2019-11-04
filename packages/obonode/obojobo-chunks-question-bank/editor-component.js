@@ -7,9 +7,9 @@ import Common from 'obojobo-document-engine/src/scripts/common'
 import Node from 'obojobo-document-engine/src/scripts/oboeditor/components/node/editor-component'
 
 import emptyQB from './empty-node.json'
+import { QUESTION_NODE } from './constants'
 
 const { Button } = Common.components
-const QUESTION_NODE = 'ObojoboDraft.Chunks.Question'
 
 const remove = (editor, node) => {
 	editor.removeNodeByKey(node.key)
@@ -33,17 +33,26 @@ const QuestionBank = props => {
 			<div className={'obojobo-draft--chunks--question-bank editor-bank'}>
 				<Button
 					className="delete-button"
-					onClick={() => {remove(editor, node)}}>
+					onClick={() => {
+						remove(editor, node)
+					}}
+				>
 					&times;
 				</Button>
 				{children}
 				<div className="button-bar">
 					<Button
-						onClick={() => {addQuestion(editor, node)}}>
+						onClick={() => {
+							addQuestion(editor, node)
+						}}
+					>
 						Add Question
 					</Button>
 					<Button
-						onClick={() => {addQuestionBank(editor, node)}}>
+						onClick={() => {
+							addQuestionBank(editor, node)
+						}}
+					>
 						Add Question Bank
 					</Button>
 				</div>

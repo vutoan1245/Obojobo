@@ -17,9 +17,7 @@ jest.mock(
 import { CHILD_TYPE_INVALID } from 'slate-schema-violations'
 import Schema from './schema'
 import Common from 'obojobo-document-engine/src/scripts/common'
-
-const QUESTION_BANK_NODE = 'ObojoboDraft.Chunks.QuestionBank'
-const SETTINGS_NODE = 'ObojoboDraft.Chunks.QuestionBank.Settings'
+import { QUESTION_BANK_NODE, SETTINGS_NODE } from './constants'
 
 describe('Question Bank Schema', () => {
 	test('plugins.schema.normalize fixes first invalid child in bank', () => {

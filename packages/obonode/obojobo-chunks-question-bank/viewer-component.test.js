@@ -3,6 +3,7 @@ import renderer from 'react-test-renderer'
 
 import QuestionBank from './viewer-component'
 import OboModel from 'obojobo-document-engine/src/scripts/common/models/obo-model'
+import { QUESTION_BANK_NODE } from './constants'
 
 require('./viewer') // used to register this oboModel
 
@@ -10,11 +11,11 @@ describe('QuestionBank', () => {
 	test('QuestionBank component', () => {
 		const model = OboModel.create({
 			id: 'id',
-			type: 'ObojoboDraft.Chunks.QuestionBank',
+			type: QUESTION_BANK_NODE,
 			children: [
 				{
 					id: 'child-id',
-					type: 'ObojoboDraft.Chunks.QuestionBank'
+					type: QUESTION_BANK_NODE
 				}
 			]
 		})

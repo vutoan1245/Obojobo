@@ -3,6 +3,7 @@ import { mount } from 'enzyme'
 import renderer from 'react-test-renderer'
 import { Registry } from 'obojobo-document-engine/src/scripts/common/registry'
 import QuestionBank from './editor-component'
+import { SELECT_SEQUENTIAL } from './constants'
 
 jest.mock('./icon', () => global.mockReactComponent(this, 'Icon'))
 jest.mock('./components/settings/editor-component', () =>
@@ -46,7 +47,7 @@ describe('QuestionBank editor', () => {
 				data: {
 					data: {
 						get: () => {
-							return { choose: 8, select: 'sequential' }
+							return { choose: 8, select: SELECT_SEQUENTIAL }
 						}
 					}
 				}
@@ -105,7 +106,7 @@ describe('QuestionBank editor', () => {
 			node: {
 				data: {
 					data: {
-						get: () => ({ choose: 8, select: 'sequential' })
+						get: () => ({ choose: 8, select: SELECT_SEQUENTIAL })
 					}
 				},
 				nodes: []

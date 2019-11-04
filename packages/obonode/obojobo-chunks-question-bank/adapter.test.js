@@ -4,6 +4,7 @@ jest.mock('obojobo-document-engine/src/scripts/common/models/obo-model', () => {
 import OboModel from 'obojobo-document-engine/src/scripts/common/models/obo-model'
 
 import QuestionBankAdapter from './adapter'
+import { SELECT_RANDOM } from './constants'
 
 describe('QuestionBank adapter', () => {
 	test('construct builds without attributes', () => {
@@ -16,7 +17,7 @@ describe('QuestionBank adapter', () => {
 		const attrs = {
 			content: {
 				choose: 2,
-				select: 'random'
+				select: SELECT_RANDOM
 			}
 		}
 		const model = new OboModel(attrs)
@@ -29,7 +30,7 @@ describe('QuestionBank adapter', () => {
 		const attrs = {
 			content: {
 				choose: Infinity,
-				select: 'random'
+				select: SELECT_RANDOM
 			}
 		}
 		const model = new OboModel(attrs)
@@ -43,7 +44,7 @@ describe('QuestionBank adapter', () => {
 		const attrs = {
 			content: {
 				choose: 2,
-				select: 'random'
+				select: SELECT_RANDOM
 			}
 		}
 		const modelA = new OboModel(attrs)
@@ -61,7 +62,7 @@ describe('QuestionBank adapter', () => {
 		const attrs = {
 			content: {
 				choose: 2,
-				select: 'random'
+				select: SELECT_RANDOM
 			}
 		}
 		const model = new OboModel(attrs)
