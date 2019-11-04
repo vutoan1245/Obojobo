@@ -1,5 +1,5 @@
 import HTML from './editor-registration'
-const HTML_NODE = 'ObojoboDraft.Chunks.HTML'
+import { HTML_NODE } from './constants'
 
 describe('HTML editor', () => {
 	test('plugins.renderNode renders HTML when passed', () => {

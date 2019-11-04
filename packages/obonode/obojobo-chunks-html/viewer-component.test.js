@@ -3,6 +3,7 @@ import renderer from 'react-test-renderer'
 
 import HTML from './viewer-component'
 import OboModel from 'obojobo-document-engine/src/scripts/common/models/obo-model'
+import { HTML_NODE } from './constants'
 
 require('./viewer') // used to register this oboModel
 
@@ -13,7 +14,7 @@ describe('HTML', () => {
 		}
 		const model = OboModel.create({
 			id: 'id',
-			type: 'ObojoboDraft.Chunks.HTML',
+			type: HTML_NODE,
 			content: {
 				html: '<marquee>Example text</marquee>'
 			}
@@ -31,7 +32,7 @@ describe('HTML', () => {
 		}
 		const model = OboModel.create({
 			id: 'id',
-			type: 'ObojoboDraft.Chunks.HTML',
+			type: HTML_NODE,
 			content: {
 				html: '<div class="latex">(x^2 + y^2 = z^2)</div>'
 			}

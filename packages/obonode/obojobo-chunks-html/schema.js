@@ -1,6 +1,8 @@
+import { HTML_NODE } from './constants'
+
 const schema = {
 	blocks: {
-		'ObojoboDraft.Chunks.HTML': {
+		[HTML_NODE]: {
 			nodes: [
 				{
 					match: [{ object: 'text' }],

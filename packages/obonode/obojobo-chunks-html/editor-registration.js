@@ -5,8 +5,7 @@ import Icon from './icon'
 import Node from './editor-component'
 import Schema from './schema'
 import Converter from './converter'
-
-const HTML_NODE = 'ObojoboDraft.Chunks.HTML'
+import { HTML_NODE } from './constants'
 
 const HTML = {
 	name: HTML_NODE,
@@ -27,7 +26,8 @@ const HTML = {
 				<span
 					className="placeholder"
 					contentEditable={false}
-					data-placeholder="<!-- HTML code here -->"/>
+					data-placeholder="<!-- HTML code here -->"
+				/>
 			)
 		},
 		renderNode(props, editor, next) {
