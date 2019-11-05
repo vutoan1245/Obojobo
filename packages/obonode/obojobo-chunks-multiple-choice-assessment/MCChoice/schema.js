@@ -1,15 +1,13 @@
 import { Block } from 'slate'
 
 import SchemaViolations from 'obojobo-document-engine/src/scripts/oboeditor/util/schema-violations'
+import { MCCHOICE_NODE, MCANSWER_NODE, MCFEEDBACK_NODE } from '../constants'
 
 const { CHILD_TYPE_INVALID, CHILD_MIN_INVALID } = SchemaViolations
 
-const MCANSWER_NODE = 'ObojoboDraft.Chunks.MCAssessment.MCAnswer'
-const MCFEEDBACK_NODE = 'ObojoboDraft.Chunks.MCAssessment.MCFeedback'
-
 const schema = {
 	blocks: {
-		'ObojoboDraft.Chunks.MCAssessment.MCChoice': {
+		[MCCHOICE_NODE]: {
 			nodes: [
 				{
 					match: [{ type: MCANSWER_NODE }],

@@ -1,8 +1,10 @@
+import { TYPE_PICK_ONE } from './constants'
+
 const Adapter = {
 	construct(model, attrs) {
 		const content = attrs && attrs.content ? attrs.content : {}
 
-		model.modelState.responseType = content.responseType || 'pick-one'
+		model.modelState.responseType = content.responseType || TYPE_PICK_ONE
 		model.modelState.correctLabels = content.correctLabels ? content.correctLabels.split('|') : null
 		model.modelState.incorrectLabels = content.incorrectLabels
 			? content.incorrectLabels.split('|')

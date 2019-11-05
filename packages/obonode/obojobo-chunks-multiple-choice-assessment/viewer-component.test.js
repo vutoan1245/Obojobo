@@ -10,6 +10,22 @@ import QuestionUtil from 'obojobo-document-engine/src/scripts/viewer/util/questi
 import React from 'react'
 import _ from 'underscore'
 import renderer from 'react-test-renderer'
+import {
+	MCCHOICE_NODE,
+	TYPE_PICK_ONE,
+	TYPE_MULTI_CORRECT,
+	TYPE_PICK_ALL,
+	MODE_REVIEW,
+	MODE_SURVEY,
+	MODE_PRACTICE,
+	DEFAULT_CORRECT_PRACTICE_LABELS,
+	DEFAULT_CORRECT_REVIEW_LABELS,
+	DEFAULT_INCORRECT_LABELS,
+	DEFAULT_INCORRECT_REVIEW_LABELS,
+	DEFAULT_SURVEY_LABELS,
+	DEFAULT_SURVEY_REVIEW_LABELS,
+	DEFAULT_SURVEY_UNANSWERED_LABELS
+} from './constants'
 
 const { getScoreClass } = require.requireActual(
 	'obojobo-document-engine/src/scripts/viewer/util/question-util'
@@ -21,18 +37,7 @@ jest.mock('obojobo-document-engine/src/scripts/common/flux/dispatcher')
 jest.mock('obojobo-document-engine/src/scripts/common/page/dom-util')
 jest.mock('obojobo-document-engine/src/scripts/common/page/focus')
 
-const DEFAULT_CORRECT_PRACTICE_LABELS = ['Correct!', 'You got it!', 'Great job!', "That's right!"]
-const DEFAULT_CORRECT_REVIEW_LABELS = ['Correct']
-const DEFAULT_INCORRECT_LABELS = ['Incorrect']
-const DEFAULT_INCORRECT_REVIEW_LABELS = ['Incorrect']
-const DEFAULT_SURVEY_LABELS = ['Response recorded']
-const DEFAULT_SURVEY_REVIEW_LABELS = ['Response recorded']
-const DEFAULT_SURVEY_UNANSWERED_LABELS = ['No response given']
 
-const MCCHOICE_NODE_TYPE = 'ObojoboDraft.Chunks.MCAssessment.MCChoice'
-const TYPE_PICK_ONE = 'pick-one'
-const TYPE_MULTI_CORRECT = 'pick-one-multiple-correct'
-const TYPE_PICK_ALL = 'pick-all'
 const ACTION_CHECK_ANSWER = 'question:checkAnswer'
 
 require('./viewer') // used to register this oboModel
@@ -173,13 +178,13 @@ const questionJSON = {
 }
 
 const createComponent = ({
-	type = 'default', //'default' | 'survey'
-	mode = 'practice', //'practice' | 'assessment' | 'review'
+	type = 'default', //'default' | MODE_SURVEY
+	mode = MODE_PRACTICE, //'practice' | 'assessment' | MODE_REVIEW
 	score = null, //null, 0 or 100
 	hasSolution = true,
 	sortedIds = ['choice1', 'choice2'],
 	response = null, //null or { ids: [some array] }
-	responseType = 'pick-one', //'pick-one', 'pick-one-multiple-correct' or 'pick-all'
+	responseType = TYPE_PICK_ONE, //'pick-one', 'pick-one-multiple-correct' or 'pick-all'
 	shuffle = true, //true or false or not set
 	isShowingExplanation = null //true or false or not set
 }) => {
@@ -375,7 +380,7 @@ describe('MCAssessment', () => {
 	test('MCAssessment component, review', () => {
 		expect(
 			createComponent({
-				mode: 'review'
+				mode: MODE_REVIEW
 			}).toJSON()
 		).toMatchSnapshot()
 	})
@@ -384,7 +389,7 @@ describe('MCAssessment', () => {
 		expect(
 			createComponent({
 				shuffle: false,
-				mode: 'review'
+				mode: MODE_REVIEW
 			}).toJSON()
 		).toMatchSnapshot()
 	})
@@ -393,7 +398,7 @@ describe('MCAssessment', () => {
 		expect(
 			createComponent({
 				sortedIds: ['choice2', 'choice1'],
-				mode: 'review'
+				mode: MODE_REVIEW
 			}).toJSON()
 		).toMatchSnapshot()
 	})
@@ -402,7 +407,7 @@ describe('MCAssessment', () => {
 		expect(
 			createComponent({
 				responseType: TYPE_MULTI_CORRECT,
-				mode: 'review'
+				mode: MODE_REVIEW
 			}).toJSON()
 		).toMatchSnapshot()
 	})
@@ -411,7 +416,7 @@ describe('MCAssessment', () => {
 		expect(
 			createComponent({
 				responseType: TYPE_PICK_ALL,
-				mode: 'review'
+				mode: MODE_REVIEW
 			}).toJSON()
 		).toMatchSnapshot()
 	})
@@ -421,7 +426,7 @@ describe('MCAssessment', () => {
 			createComponent({
 				response: { ids: ['choice2'] },
 				score: 0,
-				mode: 'review'
+				mode: MODE_REVIEW
 			}).toJSON()
 		).toMatchSnapshot()
 	})
@@ -431,7 +436,7 @@ describe('MCAssessment', () => {
 			createComponent({
 				response: { ids: ['choice1'] },
 				score: 100,
-				mode: 'review'
+				mode: MODE_REVIEW
 			}).toJSON()
 		).toMatchSnapshot()
 	})
@@ -442,7 +447,7 @@ describe('MCAssessment', () => {
 				response: { ids: ['choice2'] },
 				score: 0,
 				responseType: TYPE_MULTI_CORRECT,
-				mode: 'review'
+				mode: MODE_REVIEW
 			}).toJSON()
 		).toMatchSnapshot()
 	})
@@ -453,7 +458,7 @@ describe('MCAssessment', () => {
 				response: { ids: ['choice1'] },
 				score: 100,
 				responseType: TYPE_MULTI_CORRECT,
-				mode: 'review'
+				mode: MODE_REVIEW
 			}).toJSON()
 		).toMatchSnapshot()
 	})
@@ -464,7 +469,7 @@ describe('MCAssessment', () => {
 				response: { ids: ['choice1', 'choice2'] },
 				score: 0,
 				responseType: TYPE_PICK_ALL,
-				mode: 'review'
+				mode: MODE_REVIEW
 			}).toJSON()
 		).toMatchSnapshot()
 	})
@@ -475,7 +480,7 @@ describe('MCAssessment', () => {
 				response: { ids: ['choice1'] },
 				score: 100,
 				responseType: TYPE_PICK_ALL,
-				mode: 'review'
+				mode: MODE_REVIEW
 			}).toJSON()
 		).toMatchSnapshot()
 	})
@@ -486,7 +491,7 @@ describe('MCAssessment', () => {
 				response: { ids: ['choice2'] },
 				score: 0,
 				isShowingExplanation: true,
-				mode: 'review'
+				mode: MODE_REVIEW
 			}).toJSON()
 		).toMatchSnapshot()
 	})
@@ -497,7 +502,7 @@ describe('MCAssessment', () => {
 				response: { ids: ['choice1'] },
 				score: 100,
 				isShowingExplanation: true,
-				mode: 'review'
+				mode: MODE_REVIEW
 			}).toJSON()
 		).toMatchSnapshot()
 	})
@@ -508,7 +513,7 @@ describe('MCAssessment', () => {
 				response: { ids: ['choice1'] },
 				score: 100,
 				solution: null,
-				mode: 'review'
+				mode: MODE_REVIEW
 			}).toJSON()
 		).toMatchSnapshot()
 	})
@@ -657,7 +662,7 @@ describe('MCAssessment', () => {
 	test('MCAssessment component (survey)', () => {
 		expect(
 			createComponent({
-				type: 'survey'
+				type: MODE_SURVEY
 			}).toJSON()
 		).toMatchSnapshot()
 	})
@@ -666,7 +671,7 @@ describe('MCAssessment', () => {
 		expect(
 			createComponent({
 				shuffle: false,
-				type: 'survey'
+				type: MODE_SURVEY
 			}).toJSON()
 		).toMatchSnapshot()
 	})
@@ -675,7 +680,7 @@ describe('MCAssessment', () => {
 		expect(
 			createComponent({
 				sortedIds: ['choice2', 'choice1'],
-				type: 'survey'
+				type: MODE_SURVEY
 			}).toJSON()
 		).toMatchSnapshot()
 	})
@@ -684,7 +689,7 @@ describe('MCAssessment', () => {
 		expect(
 			createComponent({
 				responseType: TYPE_MULTI_CORRECT,
-				type: 'survey'
+				type: MODE_SURVEY
 			}).toJSON()
 		).toMatchSnapshot()
 	})
@@ -693,7 +698,7 @@ describe('MCAssessment', () => {
 		expect(
 			createComponent({
 				responseType: TYPE_PICK_ALL,
-				type: 'survey'
+				type: MODE_SURVEY
 			}).toJSON()
 		).toMatchSnapshot()
 	})
@@ -703,7 +708,7 @@ describe('MCAssessment', () => {
 			createComponent({
 				response: { ids: ['choice2'] },
 				score: 'no-score',
-				type: 'survey'
+				type: MODE_SURVEY
 			}).toJSON()
 		).toMatchSnapshot()
 	})
@@ -714,7 +719,7 @@ describe('MCAssessment', () => {
 				response: { ids: ['choice2'] },
 				score: 'no-score',
 				responseType: TYPE_MULTI_CORRECT,
-				type: 'survey'
+				type: MODE_SURVEY
 			}).toJSON()
 		).toMatchSnapshot()
 	})
@@ -725,7 +730,7 @@ describe('MCAssessment', () => {
 				response: { ids: ['choice1', 'choice2'] },
 				score: 'no-score',
 				responseType: TYPE_PICK_ALL,
-				type: 'survey'
+				type: MODE_SURVEY
 			}).toJSON()
 		).toMatchSnapshot()
 	})
@@ -733,8 +738,8 @@ describe('MCAssessment', () => {
 	test('MCAssessment component, review (survey)', () => {
 		expect(
 			createComponent({
-				mode: 'review',
-				type: 'survey'
+				mode: MODE_REVIEW,
+				type: MODE_SURVEY
 			}).toJSON()
 		).toMatchSnapshot()
 	})
@@ -743,8 +748,8 @@ describe('MCAssessment', () => {
 		expect(
 			createComponent({
 				shuffle: false,
-				mode: 'review',
-				type: 'survey'
+				mode: MODE_REVIEW,
+				type: MODE_SURVEY
 			}).toJSON()
 		).toMatchSnapshot()
 	})
@@ -753,8 +758,8 @@ describe('MCAssessment', () => {
 		expect(
 			createComponent({
 				sortedIds: ['choice2', 'choice1'],
-				mode: 'review',
-				type: 'survey'
+				mode: MODE_REVIEW,
+				type: MODE_SURVEY
 			}).toJSON()
 		).toMatchSnapshot()
 	})
@@ -763,8 +768,8 @@ describe('MCAssessment', () => {
 		expect(
 			createComponent({
 				responseType: TYPE_MULTI_CORRECT,
-				mode: 'review',
-				type: 'survey'
+				mode: MODE_REVIEW,
+				type: MODE_SURVEY
 			}).toJSON()
 		).toMatchSnapshot()
 	})
@@ -773,8 +778,8 @@ describe('MCAssessment', () => {
 		expect(
 			createComponent({
 				responseType: TYPE_PICK_ALL,
-				mode: 'review',
-				type: 'survey'
+				mode: MODE_REVIEW,
+				type: MODE_SURVEY
 			}).toJSON()
 		).toMatchSnapshot()
 	})
@@ -784,8 +789,8 @@ describe('MCAssessment', () => {
 			createComponent({
 				response: { ids: ['choice2'] },
 				score: 'no-score',
-				mode: 'review',
-				type: 'survey'
+				mode: MODE_REVIEW,
+				type: MODE_SURVEY
 			}).toJSON()
 		).toMatchSnapshot()
 	})
@@ -796,8 +801,8 @@ describe('MCAssessment', () => {
 				response: { ids: ['choice2'] },
 				score: 'no-score',
 				responseType: TYPE_MULTI_CORRECT,
-				mode: 'review',
-				type: 'survey'
+				mode: MODE_REVIEW,
+				type: MODE_SURVEY
 			}).toJSON()
 		).toMatchSnapshot()
 	})
@@ -808,8 +813,8 @@ describe('MCAssessment', () => {
 				response: { ids: ['choice1', 'choice2'] },
 				score: 'no-score',
 				responseType: TYPE_PICK_ALL,
-				mode: 'review',
-				type: 'survey'
+				mode: MODE_REVIEW,
+				type: MODE_SURVEY
 			}).toJSON()
 		).toMatchSnapshot()
 	})
@@ -818,7 +823,7 @@ describe('MCAssessment', () => {
 		expect(
 			createComponent({
 				mode: 'assessment',
-				type: 'survey'
+				type: MODE_SURVEY
 			}).toJSON()
 		).toMatchSnapshot()
 	})
@@ -828,7 +833,7 @@ describe('MCAssessment', () => {
 			createComponent({
 				shuffle: false,
 				mode: 'assessment',
-				type: 'survey'
+				type: MODE_SURVEY
 			}).toJSON()
 		).toMatchSnapshot()
 	})
@@ -838,7 +843,7 @@ describe('MCAssessment', () => {
 			createComponent({
 				sortedIds: ['choice2', 'choice1'],
 				mode: 'assessment',
-				type: 'survey'
+				type: MODE_SURVEY
 			}).toJSON()
 		).toMatchSnapshot()
 	})
@@ -848,7 +853,7 @@ describe('MCAssessment', () => {
 			createComponent({
 				responseType: TYPE_MULTI_CORRECT,
 				mode: 'assessment',
-				type: 'survey'
+				type: MODE_SURVEY
 			}).toJSON()
 		).toMatchSnapshot()
 	})
@@ -858,7 +863,7 @@ describe('MCAssessment', () => {
 			createComponent({
 				responseType: TYPE_PICK_ALL,
 				mode: 'assessment',
-				type: 'survey'
+				type: MODE_SURVEY
 			}).toJSON()
 		).toMatchSnapshot()
 	})
@@ -869,7 +874,7 @@ describe('MCAssessment', () => {
 				response: { ids: ['choice2'] },
 				score: 'no-score',
 				mode: 'assessment',
-				type: 'survey'
+				type: MODE_SURVEY
 			}).toJSON()
 		).toMatchSnapshot()
 	})
@@ -881,7 +886,7 @@ describe('MCAssessment', () => {
 				score: 'no-score',
 				responseType: TYPE_MULTI_CORRECT,
 				mode: 'assessment',
-				type: 'survey'
+				type: MODE_SURVEY
 			}).toJSON()
 		).toMatchSnapshot()
 	})
@@ -893,7 +898,7 @@ describe('MCAssessment', () => {
 				score: 'no-score',
 				responseType: TYPE_PICK_ALL,
 				mode: 'assessment',
-				type: 'survey'
+				type: MODE_SURVEY
 			}).toJSON()
 		).toMatchSnapshot()
 	})
@@ -1109,7 +1114,7 @@ describe('MCAssessment', () => {
 			focusState: {}
 		}
 		const parent = OboModel.create(questionJSON)
-		parent.modelState.type = 'survey'
+		parent.modelState.type = MODE_SURVEY
 		const model = parent.children.models[0]
 
 		// choice1 was selected - correct
@@ -1236,7 +1241,7 @@ describe('MCAssessment', () => {
 			}
 		}
 		const parent = OboModel.create(questionJSON)
-		parent.modelState.type = 'survey'
+		parent.modelState.type = MODE_SURVEY
 		const model = parent.children.models[0]
 		const event = { preventDefault: jest.fn() }
 
@@ -1318,7 +1323,7 @@ describe('MCAssessment', () => {
 		expect(DOMUtil.findParentWithAttr).toHaveBeenCalledWith(
 			'mockTarget',
 			'data-type',
-			MCCHOICE_NODE_TYPE
+			MCCHOICE_NODE
 		)
 	})
 
@@ -1347,7 +1352,7 @@ describe('MCAssessment', () => {
 		expect(DOMUtil.findParentWithAttr).toHaveBeenCalledWith(
 			'mockTarget',
 			'data-type',
-			MCCHOICE_NODE_TYPE
+			MCCHOICE_NODE
 		)
 		expect(mcChoiceEl.getAttribute).toHaveBeenCalledWith('data-id')
 	})
@@ -1385,7 +1390,7 @@ describe('MCAssessment', () => {
 		expect(DOMUtil.findParentWithAttr).toHaveBeenCalledWith(
 			'mockTarget',
 			'data-type',
-			MCCHOICE_NODE_TYPE
+			MCCHOICE_NODE
 		)
 		expect(mcChoiceEl.getAttribute).toHaveBeenCalledWith('data-id')
 		expect(QuestionUtil.retryQuestion).toHaveBeenCalled()
@@ -1427,7 +1432,7 @@ describe('MCAssessment', () => {
 		expect(DOMUtil.findParentWithAttr).toHaveBeenCalledWith(
 			'mockTarget',
 			'data-type',
-			MCCHOICE_NODE_TYPE
+			MCCHOICE_NODE
 		)
 		expect(mcChoiceEl.getAttribute).toHaveBeenCalledWith('data-id')
 		expect(QuestionUtil.setResponse).toHaveBeenCalledWith(
@@ -1480,7 +1485,7 @@ describe('MCAssessment', () => {
 		expect(DOMUtil.findParentWithAttr).toHaveBeenCalledWith(
 			'mockTarget',
 			'data-type',
-			MCCHOICE_NODE_TYPE
+			MCCHOICE_NODE
 		)
 		expect(mcChoiceEl.getAttribute).toHaveBeenCalledWith('data-id')
 		expect(QuestionUtil.setResponse).toHaveBeenCalledWith(
@@ -1536,7 +1541,7 @@ describe('MCAssessment', () => {
 		expect(DOMUtil.findParentWithAttr).toHaveBeenCalledWith(
 			'mockTarget',
 			'data-type',
-			MCCHOICE_NODE_TYPE
+			MCCHOICE_NODE
 		)
 		expect(mcChoiceEl.getAttribute).toHaveBeenCalledWith('data-id')
 		expect(QuestionUtil.setResponse).toHaveBeenCalledWith(
@@ -1592,7 +1597,7 @@ describe('MCAssessment', () => {
 		expect(DOMUtil.findParentWithAttr).toHaveBeenCalledWith(
 			'mockTarget',
 			'data-type',
-			MCCHOICE_NODE_TYPE
+			MCCHOICE_NODE
 		)
 		expect(mcChoiceEl.getAttribute).toHaveBeenCalledWith('data-id')
 		expect(QuestionUtil.setResponse).toHaveBeenCalledWith(

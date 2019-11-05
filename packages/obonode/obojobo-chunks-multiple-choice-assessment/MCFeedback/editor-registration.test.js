@@ -1,7 +1,7 @@
 import { CHILD_TYPE_INVALID } from 'slate-schema-violations'
 
 import MCFeedback from './editor-registration'
-const MCFEEDBACK_NODE = 'ObojoboDraft.Chunks.MCAssessment.MCFeedback'
+import { MCFEEDBACK_NODE } from '../constants'
 
 describe('MCFeedback editor', () => {
 	test('plugins.renderNode renders a node', () => {

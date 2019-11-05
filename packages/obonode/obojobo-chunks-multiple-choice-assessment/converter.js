@@ -1,5 +1,6 @@
 import Common from 'obojobo-document-engine/src/scripts/common'
 import OboModel from 'obojobo-document-engine/src/scripts/common/models/obo-model'
+import { TYPE_PICK_ONE, TYPE_MULTI_CORRECT } from './constants'
 
 const slateToObo = node => {
 	const content = node.data.get('content') || {}
@@ -11,11 +12,11 @@ const slateToObo = node => {
 		return Common.Registry.getItemForType(child.type).slateToObo(child)
 	})
 
-	if (correct > 1 && content.responseType === 'pick-one') {
-		content.responseType = 'pick-one-multiple-correct'
+	if (correct > 1 && content.responseType === TYPE_PICK_ONE) {
+		content.responseType = TYPE_MULTI_CORRECT
 	}
-	if (correct === 1 && content.responseType === 'pick-one-multiple-correct') {
-		content.responseType = 'pick-one'
+	if (correct === 1 && content.responseType === TYPE_MULTI_CORRECT) {
+		content.responseType = TYPE_PICK_ONE
 	}
 
 	return {

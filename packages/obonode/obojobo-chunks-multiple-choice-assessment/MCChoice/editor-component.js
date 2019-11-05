@@ -5,10 +5,9 @@ import React from 'react'
 import Common from 'obojobo-document-engine/src/scripts/common'
 import { Block } from 'slate'
 import isOrNot from 'obojobo-document-engine/src/scripts/common/util/isornot'
+import { MCFEEDBACK_NODE } from '../constants'
 
 const { Button } = Common.components
-
-const MCFEEDBACK_NODE = 'ObojoboDraft.Chunks.MCAssessment.MCFeedback'
 
 class MCChoice extends React.Component {
 	constructor(props) {
@@ -58,7 +57,11 @@ class MCChoice extends React.Component {
 				<Button className="delete-button" onClick={event => this.delete(event)}>
 					×
 				</Button>
-				<Button className="correct-button" onClick={event => this.handleScoreChange(event)} contentEditable={false}>
+				<Button
+					className="correct-button"
+					onClick={event => this.handleScoreChange(event)}
+					contentEditable={false}
+				>
 					{score === 100 ? '✔ Correct' : '✖ Incorrect'}
 				</Button>
 				<div className="children">

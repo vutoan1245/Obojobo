@@ -1,8 +1,7 @@
 import { CHILD_TYPE_INVALID } from 'slate-schema-violations'
 
 import MCChoice from './editor-registration'
-const MCCHOICE_NODE = 'ObojoboDraft.Chunks.MCAssessment.MCChoice'
-const MCFEEDBACK_NODE = 'ObojoboDraft.Chunks.MCAssessment.MCFeedback'
+import { MCCHOICE_NODE, MCFEEDBACK_NODE } from '../constants'
 
 describe('MCChoice editor', () => {
 	test('plugins.renderNode renders a choice', () => {

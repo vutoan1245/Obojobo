@@ -1,8 +1,7 @@
 import { CHILD_TYPE_INVALID } from 'slate-schema-violations'
 
 import MCAnswer from './editor-registration'
-
-const MCANSWER_NODE = 'ObojoboDraft.Chunks.MCAssessment.MCAnswer'
+import { MCANSWER_NODE } from '../constants'
 
 describe('MCAnswer editor', () => {
 	test('plugins.renderNode renders a node', () => {

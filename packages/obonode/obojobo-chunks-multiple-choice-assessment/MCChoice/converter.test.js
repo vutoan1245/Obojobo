@@ -8,8 +8,7 @@ jest.mock('obojobo-document-engine/src/scripts/common/index', () => ({
 }))
 
 import Converter from './converter'
-const MCFEEDBACK_NODE = 'ObojoboDraft.Chunks.MCAssessment.MCFeedback'
-const MCANSWER_NODE = 'ObojoboDraft.Chunks.MCAssessment.MCAnswer'
+import { MCFEEDBACK_NODE, MCANSWER_NODE } from '../constants'
 
 describe('MCChoice editor', () => {
 	test('slateToObo converts a Slate node to an OboNode with content', () => {

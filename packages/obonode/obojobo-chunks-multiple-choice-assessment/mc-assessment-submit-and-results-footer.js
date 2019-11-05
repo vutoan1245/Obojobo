@@ -1,6 +1,7 @@
 import Common from 'Common'
 import MCAssessmentResults from './mc-assessment-results'
 import React from 'react'
+import { MODE_PRACTICE } from './constants'
 
 const { Button } = Common.components
 
@@ -27,7 +28,7 @@ const MCAssessmentSubmitAndResultsFooter = props => {
 
 	return (
 		<div className="submit-and-result-container">
-			{props.mode === 'practice' ? (
+			{props.mode === MODE_PRACTICE ? (
 				<div className="submit">
 					{isAnswerScored ? (
 						<Button

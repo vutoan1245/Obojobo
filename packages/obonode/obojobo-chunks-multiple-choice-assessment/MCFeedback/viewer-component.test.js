@@ -2,6 +2,7 @@ import React from 'react'
 import renderer from 'react-test-renderer'
 import MCFeedback from './viewer-component'
 import OboModel from 'obojobo-document-engine/src/scripts/common/models/obo-model'
+import { MCCHOICE_NODE, MCFEEDBACK_NODE } from '../constants'
 
 require('./viewer') // used to register this oboModel
 require('../MCChoice/viewer') // used to register the MCChoice chunk as a dep
@@ -15,14 +16,14 @@ describe('MCFeedback', () => {
 		}
 		OboModel.create({
 			id: 'parent',
-			type: 'ObojoboDraft.Chunks.MCAssessment.MCChoice',
+			type: MCCHOICE_NODE,
 			content: {
 				score: 100
 			},
 			children: [
 				{
 					id: 'feedback',
-					type: 'ObojoboDraft.Chunks.MCAssessment.MCFeedback',
+					type: MCFEEDBACK_NODE,
 					children: [
 						{
 							id: 'choice1-feedback-text',
@@ -55,14 +56,14 @@ describe('MCFeedback', () => {
 		}
 		OboModel.create({
 			id: 'parent',
-			type: 'ObojoboDraft.Chunks.MCAssessment.MCChoice',
+			type: MCCHOICE_NODE,
 			content: {
 				score: 0
 			},
 			children: [
 				{
 					id: 'feedback',
-					type: 'ObojoboDraft.Chunks.MCAssessment.MCFeedback',
+					type: MCFEEDBACK_NODE,
 					children: [
 						{
 							id: 'choice1-feedback-text',

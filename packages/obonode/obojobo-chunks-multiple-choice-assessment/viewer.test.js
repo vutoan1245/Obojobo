@@ -16,11 +16,12 @@ const Common = require('obojobo-document-engine/src/scripts/common/index')
 // include the script we're testing, it registers the model
 import './viewer'
 import ViewerComponent from './viewer-component'
+import { MCASSESSMENT_NODE } from './constants'
 
-describe('ObojoboDraft.Chunks.MCAssessment registration', () => {
+describe(`${MCASSESSMENT_NODE} registration`, () => {
 	test('registerModel registers expected vars', () => {
 		const register = Common.Registry.registerModel.mock.calls[0]
-		expect(register[0]).toBe('ObojoboDraft.Chunks.MCAssessment')
+		expect(register[0]).toBe(MCASSESSMENT_NODE)
 		expect(register[1]).toHaveProperty('type', 'chunk')
 		expect(register[1]).toHaveProperty('adapter', {})
 		expect(register[1]).toHaveProperty('componentClass', ViewerComponent)

@@ -3,8 +3,7 @@ import React from 'react'
 import Node from './editor-component'
 import Schema from './schema'
 import Converter from './converter'
-
-const MCANSWER_NODE = 'ObojoboDraft.Chunks.MCAssessment.MCAnswer'
+import { MCANSWER_NODE } from '../constants'
 
 const MCAnswer = {
 	name: MCANSWER_NODE,

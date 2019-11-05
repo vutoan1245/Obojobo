@@ -3,18 +3,23 @@ import { Block } from 'slate'
 import ToggleParameter from 'obojobo-document-engine/src/scripts/oboeditor/components/parameter-node/toggle-parameter'
 import SelectParameter from 'obojobo-document-engine/src/scripts/oboeditor/components/parameter-node/select-parameter'
 import SchemaViolations from 'obojobo-document-engine/src/scripts/oboeditor/util/schema-violations'
+import {
+	MCASSESSMENT_NODE,
+	MCCHOICE_NODE,
+	SETTINGS_NODE,
+	CHOICE_LIST_NODE,
+	TYPE_PICK_ONE,
+	TYPE_PICK_ALL
+} from './constants'
 
 const { CHILD_TYPE_INVALID, CHILD_MIN_INVALID } = SchemaViolations
 
-const SETTINGS_NODE = 'ObojoboDraft.Chunks.MCAssessment.Settings'
-const CHOICE_LIST_NODE = 'ObojoboDraft.Chunks.MCAssessment.ChoiceList'
-const MCCHOICE_NODE = 'ObojoboDraft.Chunks.MCAssessment.MCChoice'
 const TOGGLE_PARAMETER = 'oboeditor.toggle-parameter'
 const SELECT_PARAMETER = 'oboeditor.select-parameter'
 
 const schema = {
 	blocks: {
-		'ObojoboDraft.Chunks.MCAssessment': {
+		[MCASSESSMENT_NODE]: {
 			nodes: [
 				{
 					match: [{ type: MCCHOICE_NODE }],
@@ -41,7 +46,7 @@ const schema = {
 				}
 			}
 		},
-		'ObojoboDraft.Chunks.MCAssessment.ChoiceList': {
+		[CHOICE_LIST_NODE]: {
 			nodes: [
 				{
 					match: [{ type: MCCHOICE_NODE }],
@@ -68,7 +73,7 @@ const schema = {
 				}
 			}
 		},
-		'ObojoboDraft.Chunks.MCAssessment.Settings': {
+		[SETTINGS_NODE]: {
 			nodes: [
 				{
 					match: [{ type: SELECT_PARAMETER }],
@@ -87,9 +92,9 @@ const schema = {
 					case CHILD_MIN_INVALID: {
 						if (index === 0) {
 							const block = Block.create(
-								SelectParameter.helpers.oboToSlate('responseType', 'pick-one', 'Response Type', [
-									'pick-one',
-									'pick-all'
+								SelectParameter.helpers.oboToSlate('responseType', TYPE_PICK_ONE, 'Response Type', [
+									TYPE_PICK_ONE,
+									TYPE_PICK_ALL
 								])
 							)
 							return editor.insertNodeByKey(node.key, index, block)
@@ -102,9 +107,9 @@ const schema = {
 					case CHILD_TYPE_INVALID: {
 						if (index === 0) {
 							const block = Block.create(
-								SelectParameter.helpers.oboToSlate('responseType', 'pick-one', 'Response Type', [
-									'pick-one',
-									'pick-all'
+								SelectParameter.helpers.oboToSlate('responseType', TYPE_PICK_ONE, 'Response Type', [
+									TYPE_PICK_ONE,
+									TYPE_PICK_ALL
 								])
 							)
 							return editor.withoutNormalizing(e => {

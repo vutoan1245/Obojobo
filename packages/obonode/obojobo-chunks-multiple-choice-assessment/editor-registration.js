@@ -5,13 +5,10 @@ import ChoiceList from './components/choice-list/editor-component'
 import Settings from './components/settings/editor-component'
 import Schema from './schema'
 import Converter from './converter'
-
-const MCASSESSMENT_NODE = 'ObojoboDraft.Chunks.MCAssessment'
-const SETTINGS_NODE = 'ObojoboDraft.Chunks.MCAssessment.Settings'
-const CHOICE_LIST_NODE = 'ObojoboDraft.Chunks.MCAssessment.ChoiceList'
+import { MCASSESSMENT_NODE, SETTINGS_NODE, CHOICE_LIST_NODE } from './constants'
 
 const MCAssessment = {
-	name: 'ObojoboDraft.Chunks.MCAssessment',
+	name: MCASSESSMENT_NODE,
 	menuLabel: 'Multiple Choice Assessment',
 	isInsertable: false,
 	supportsChildren: true,

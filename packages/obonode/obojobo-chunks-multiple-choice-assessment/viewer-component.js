@@ -9,6 +9,21 @@ import React from 'react'
 import Viewer from 'obojobo-document-engine/src/scripts/viewer'
 import _ from 'underscore'
 import isOrNot from 'obojobo-document-engine/src/scripts/common/util/isornot'
+import {
+	MCCHOICE_NODE,
+	TYPE_MULTI_CORRECT,
+	TYPE_PICK_ONE,
+	TYPE_PICK_ALL,
+	MODE_REVIEW,
+	MODE_SURVEY,
+	DEFAULT_CORRECT_PRACTICE_LABELS,
+	DEFAULT_CORRECT_REVIEW_LABELS,
+	DEFAULT_INCORRECT_LABELS,
+	DEFAULT_INCORRECT_REVIEW_LABELS,
+	DEFAULT_SURVEY_LABELS,
+	DEFAULT_SURVEY_REVIEW_LABELS,
+	DEFAULT_SURVEY_UNANSWERED_LABELS
+} from './constants'
 
 const { Dispatcher } = Common.flux
 const { OboModel } = Common.models
@@ -16,13 +31,6 @@ const { DOMUtil } = Common.page
 const { OboComponent } = Viewer.components
 const { FocusUtil, QuestionUtil } = Viewer.util
 
-const DEFAULT_CORRECT_PRACTICE_LABELS = ['Correct!', 'You got it!', 'Great job!', "That's right!"]
-const DEFAULT_CORRECT_REVIEW_LABELS = ['Correct']
-const DEFAULT_INCORRECT_LABELS = ['Incorrect']
-const DEFAULT_INCORRECT_REVIEW_LABELS = ['Incorrect']
-const DEFAULT_SURVEY_LABELS = ['Response recorded']
-const DEFAULT_SURVEY_REVIEW_LABELS = ['Response recorded']
-const DEFAULT_SURVEY_UNANSWERED_LABELS = ['No response given']
 const PICK_ALL_INCORRECT_MESSAGE =
 	'You have either missed some correct answers or selected some incorrect answers.'
 
@@ -126,12 +134,12 @@ export default class MCAssessment extends React.Component {
 
 		const questionModel = this.getQuestionModel()
 
-		if (questionModel.modelState.type === 'survey') {
+		if (questionModel.modelState.type === MODE_SURVEY) {
 			return 'no-score'
 		}
 
 		switch (this.props.model.modelState.responseType) {
-			case 'pick-all': {
+			case TYPE_PICK_ALL: {
 				if (correct.size !== responses.size) {
 					return 0
 				}
@@ -199,11 +207,7 @@ export default class MCAssessment extends React.Component {
 	onFormChange(event) {
 		let response
 		const questionModel = this.getQuestionModel()
-		const mcChoiceEl = DOMUtil.findParentWithAttr(
-			event.target,
-			'data-type',
-			'ObojoboDraft.Chunks.MCAssessment.MCChoice'
-		)
+		const mcChoiceEl = DOMUtil.findParentWithAttr(event.target, 'data-type', MCCHOICE_NODE)
 		if (!mcChoiceEl) {
 			return
 		}
@@ -218,7 +222,7 @@ export default class MCAssessment extends React.Component {
 		}
 
 		switch (this.props.model.modelState.responseType) {
-			case 'pick-all': {
+			case TYPE_PICK_ALL: {
 				response = QuestionUtil.getResponse(
 					this.props.moduleData.questionState,
 					questionModel,
@@ -274,7 +278,7 @@ export default class MCAssessment extends React.Component {
 			FEEDBACK_LABELS_TO_SHOW
 		)
 
-		if (questionModel.modelState.type === 'survey') {
+		if (questionModel.modelState.type === MODE_SURVEY) {
 			QuestionUtil.submitResponse(questionModel.get('id'), this.props.moduleData.navState.context)
 		} else {
 			QuestionUtil.checkAnswer(questionModel.get('id'), this.props.moduleData.navState.context)
@@ -387,13 +391,13 @@ export default class MCAssessment extends React.Component {
 
 		return sortedIds
 			.map(mcChoiceId => OboModel.models[mcChoiceId])
-			.filter(model => model.get('type') === 'ObojoboDraft.Chunks.MCAssessment.MCChoice')
+			.filter(model => model.get('type') === MCCHOICE_NODE)
 	}
 
 	isShowingExplanationButton() {
 		const isAnswerScored = this.getScore() !== null
 		const hasSolution = this.props.model.parent.modelState.solution !== null
-		const isSurvey = this.props.type === 'survey'
+		const isSurvey = this.props.type === MODE_SURVEY
 
 		return isAnswerScored && hasSolution && !isSurvey
 	}
@@ -407,21 +411,21 @@ export default class MCAssessment extends React.Component {
 	}
 
 	getInstructions(responseType, questionType) {
-		if (questionType === 'survey') {
+		if (questionType === MODE_SURVEY) {
 			switch (responseType) {
-				case 'pick-one':
-				case 'pick-one-multiple-correct':
+				case TYPE_PICK_ONE:
+				case TYPE_MULTI_CORRECT:
 					return <span>Choose one</span>
-				case 'pick-all':
+				case TYPE_PICK_ALL:
 					return <span>Choose one or more</span>
 			}
 		} else {
 			switch (responseType) {
-				case 'pick-one':
+				case TYPE_PICK_ONE:
 					return <span>Pick the correct answer</span>
-				case 'pick-one-multiple-correct':
+				case TYPE_MULTI_CORRECT:
 					return <span>Pick one of the correct answers</span>
-				case 'pick-all':
+				case TYPE_PICK_ALL:
 					return (
 						<span>
 							Pick <b>all</b> of the correct answers
@@ -445,15 +449,15 @@ export default class MCAssessment extends React.Component {
 
 	render() {
 		const responseType = this.props.model.modelState.responseType
-		const isTypePickAll = responseType === 'pick-all'
+		const isTypePickAll = responseType === TYPE_PICK_ALL
 		const isShowingExplanationValue = this.isShowingExplanation()
 		const isShowingExplanationButtonValue = this.isShowingExplanationButton()
 		const score = this.getScore()
 		const scoreClass = this.getScoreClass()
 		const sortedChoiceModels = this.getSortedChoiceModels()
 		const isAnswered = this.getIsAnswered()
-		const isReview = this.props.mode === 'review'
-		const isSurvey = this.props.type === 'survey'
+		const isReview = this.props.mode === MODE_REVIEW
+		const isSurvey = this.props.type === MODE_SURVEY
 		const isAssessmentQuestion = this.props.mode === 'assessment'
 
 		let labelsToShow = QuestionUtil.getData(
@@ -494,9 +498,7 @@ export default class MCAssessment extends React.Component {
 			>
 				<fieldset>
 					<legend className="instructions">
-						<span className="for-screen-reader-only">{`Multiple choice form with ${
-							sortedChoiceModels.length
-						} choices. `}</span>
+						<span className="for-screen-reader-only">{`Multiple choice form with ${sortedChoiceModels.length} choices. `}</span>
 						{this.getInstructions(responseType, this.props.type)}
 					</legend>
 					<MCAssessmentAnswerChoices

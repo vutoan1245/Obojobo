@@ -14,10 +14,13 @@ jest.mock('obojobo-document-engine/src/scripts/common/models/obo-model')
 
 import Converter from './converter'
 import OboModel from 'obojobo-document-engine/src/scripts/common/models/obo-model'
-
-const SETTINGS_NODE = 'ObojoboDraft.Chunks.MCAssessment.Settings'
-const CHOICE_LIST_NODE = 'ObojoboDraft.Chunks.MCAssessment.ChoiceList'
-const MCCHOICE_NODE = 'ObojoboDraft.Chunks.MCAssessment.MCChoice'
+import {
+	SETTINGS_NODE,
+	CHOICE_LIST_NODE,
+	MCCHOICE_NODE,
+	TYPE_PICK_ONE,
+	TYPE_MULTI_CORRECT
+} from './constants'
 
 describe('MCAssessment Converter', () => {
 	test('slateToObo converts a Slate node to an OboNode with no content', () => {
@@ -44,7 +47,7 @@ describe('MCAssessment Converter', () => {
 			type: 'mockType',
 			data: {
 				get: () => {
-					return { responseType: 'pick-one-multiple-correct' }
+					return { responseType: TYPE_MULTI_CORRECT }
 				}
 			},
 			nodes: [
@@ -66,7 +69,7 @@ describe('MCAssessment Converter', () => {
 					nodes: {
 						first: () => ({
 							data: {
-								get: () => 'pick-one-multiple-correct'
+								get: () => TYPE_MULTI_CORRECT
 							}
 						}),
 						last: () => ({
@@ -89,7 +92,7 @@ describe('MCAssessment Converter', () => {
 			type: 'mockType',
 			data: {
 				get: () => {
-					return { responseType: 'pick-one' }
+					return { responseType: TYPE_PICK_ONE }
 				}
 			},
 			nodes: [
@@ -127,7 +130,7 @@ describe('MCAssessment Converter', () => {
 					nodes: {
 						first: () => ({
 							data: {
-								get: () => 'pick-one'
+								get: () => TYPE_PICK_ONE
 							}
 						}),
 						last: () => ({

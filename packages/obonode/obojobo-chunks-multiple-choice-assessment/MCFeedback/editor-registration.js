@@ -3,8 +3,7 @@ import React from 'react'
 import Node from './editor-component'
 import Schema from './schema'
 import Converter from './converter'
-
-const MCFEEDBACK_NODE = 'ObojoboDraft.Chunks.MCAssessment.MCFeedback'
+import { MCFEEDBACK_NODE } from '../constants'
 
 const MCFeedback = {
 	name: MCFEEDBACK_NODE,

@@ -3,6 +3,7 @@ import renderer from 'react-test-renderer'
 
 import MCAnswer from './viewer-component'
 import OboModel from 'obojobo-document-engine/src/scripts/common/models/obo-model'
+import { MCANSWER_NODE } from '../constants'
 
 require('./viewer') // used to register this oboModel
 require('obojobo-chunks-text/viewer') // used to register the Text chunk as a dep
@@ -11,7 +12,7 @@ describe('MCAnswer', () => {
 	test('MCAnswer component', () => {
 		const model = OboModel.create({
 			id: 'choice1-answer',
-			type: 'ObojoboDraft.Chunks.MCAssessment.MCAnswer',
+			type: MCANSWER_NODE,
 			children: [
 				{
 					id: 'choice1-answer-text',

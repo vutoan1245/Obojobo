@@ -1,4 +1,5 @@
 import mcAssessmentResults from './mc-assessment-results'
+import { MODE_SURVEY } from './constants'
 
 describe('ObojoboDraft.Chunks.MCAssessment mc-assessment-results', () => {
 	test.each([
@@ -10,14 +11,14 @@ describe('ObojoboDraft.Chunks.MCAssessment mc-assessment-results', () => {
 		['default', 0, true, false],
 		['default', 0, false, true],
 		['default', 0, false, false],
-		['survey', 100, true, true],
-		['survey', 100, true, false],
-		['survey', 100, false, true],
-		['survey', 100, false, false],
-		['survey', 0, true, true],
-		['survey', 0, true, false],
-		['survey', 0, false, true],
-		['survey', 0, false, false]
+		[MODE_SURVEY, 100, true, true],
+		[MODE_SURVEY, 100, true, false],
+		[MODE_SURVEY, 100, false, true],
+		[MODE_SURVEY, 100, false, false],
+		[MODE_SURVEY, 0, true, true],
+		[MODE_SURVEY, 0, true, false],
+		[MODE_SURVEY, 0, false, true],
+		[MODE_SURVEY, 0, false, false]
 	])(
 		'type=%s, score=%i, isTypePickAll=%s, isForScreenReader=%s',
 		(type, score, isTypePickAll, isForScreenReader) => {

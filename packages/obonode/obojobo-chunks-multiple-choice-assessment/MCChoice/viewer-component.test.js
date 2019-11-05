@@ -6,11 +6,13 @@ jest.mock('obojobo-document-engine/src/scripts/viewer/util/question-util')
 import MCChoice from './viewer-component'
 import OboModel from 'obojobo-document-engine/src/scripts/common/models/obo-model'
 import QuestionUtil from 'obojobo-document-engine/src/scripts/viewer/util/question-util'
-
-const TYPE_PICK_ONE = 'pick-one'
-const TYPE_MULTI_CORRECT = 'pick-one-multiple-correct'
-const TYPE_PICK_ALL = 'pick-all'
-const MODE_REVIEW = 'review'
+import {
+	TYPE_PICK_ONE,
+	TYPE_MULTI_CORRECT,
+	TYPE_PICK_ALL,
+	MODE_REVIEW,
+	MODE_SURVEY
+} from '../constants'
 
 require('./viewer') // used to register this oboModel
 require('../viewer') // // dependency on Obojobo.Chunks.MCAssessment
@@ -433,7 +435,7 @@ describe('MCChoice viewer-component', () => {
 		})
 
 		const surveyQuestionJSON = getQuestionJSON()
-		surveyQuestionJSON.content.type = 'survey'
+		surveyQuestionJSON.content.type = MODE_SURVEY
 		const question = OboModel.create(surveyQuestionJSON)
 		const mcassessment = question.children.models[0]
 		const model = mcassessment.children.models[0]
@@ -656,7 +658,7 @@ describe('MCChoice viewer-component', () => {
 
 	test('MCChoice component in review mode - survey question - this item selected', () => {
 		const surveyQuestionJSON = getQuestionJSON()
-		surveyQuestionJSON.content.type = 'survey'
+		surveyQuestionJSON.content.type = MODE_SURVEY
 		const question = OboModel.create(surveyQuestionJSON)
 		const mcassessment = question.children.models[0]
 		// This choice
@@ -695,7 +697,7 @@ describe('MCChoice viewer-component', () => {
 
 	test('MCChoice component in review mode - survey question - this item NOT selected', () => {
 		const surveyQuestionJSON = getQuestionJSON()
-		surveyQuestionJSON.content.type = 'survey'
+		surveyQuestionJSON.content.type = MODE_SURVEY
 		const question = OboModel.create(surveyQuestionJSON)
 		const mcassessment = question.children.models[0]
 		// Not this choice

@@ -1,6 +1,7 @@
 import Common from 'Common'
 import MCAssessmentResults from './mc-assessment-results'
 import React from 'react'
+import { TYPE_PICK_ALL } from './constants'
 
 const { focus } = Common.page
 
@@ -16,7 +17,7 @@ export default class MCAssessmentAnswerChoices extends React.Component {
 
 	render() {
 		const responseType = this.props.responseType
-		const isTypePickAll = responseType === 'pick-all'
+		const isTypePickAll = responseType === TYPE_PICK_ALL
 		const isAnswerScored = this.props.score !== null // Question has been submitted in practice or scored by server in assessment
 
 		return (

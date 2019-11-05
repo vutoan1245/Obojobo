@@ -1,4 +1,5 @@
 import MCAssessmentAdapter from './adapter'
+import { TYPE_PICK_ONE } from './constants'
 
 describe('MCAssessment adapter', () => {
 	test('construct builds without attributes', () => {
@@ -11,7 +12,7 @@ describe('MCAssessment adapter', () => {
 		const model = { modelState: {} }
 		const attrs = {
 			content: {
-				responseType: 'pick-one',
+				responseType: TYPE_PICK_ONE,
 				correctLabels: 'Correct!|Great job!',
 				incorrectLabels: 'Incorrect|wrong',
 				shuffle: false
@@ -27,7 +28,7 @@ describe('MCAssessment adapter', () => {
 		const model = { modelState: {} }
 		const attrs = {
 			content: {
-				responseType: 'pick-one'
+				responseType: TYPE_PICK_ONE
 			}
 		}
 
@@ -89,7 +90,7 @@ describe('MCAssessment adapter', () => {
 	test('clone creates a copy with attributes', () => {
 		const a = {
 			modelState: {
-				responseType: 'pick-one',
+				responseType: TYPE_PICK_ONE,
 				correctLabels: 'Correct!|Great job!',
 				incorrectLabels: 'Incorrect|wrong',
 				shuffle: true
@@ -97,7 +98,7 @@ describe('MCAssessment adapter', () => {
 		}
 		const attrs = {
 			content: {
-				responseType: 'pick-one',
+				responseType: TYPE_PICK_ONE,
 				correctLabels: 'Correct!|Great job!',
 				incorrectLabels: 'Incorrect|wrong',
 				shuffle: true
@@ -121,7 +122,7 @@ describe('MCAssessment adapter', () => {
 
 	test('can convert to JSON', () => {
 		const model = { modelState: {} }
-		const attrs = { content: { responseType: 'pick-one' } }
+		const attrs = { content: { responseType: TYPE_PICK_ONE } }
 		const json = { content: {} }
 
 		MCAssessmentAdapter.construct(model, attrs)
@@ -134,7 +135,7 @@ describe('MCAssessment adapter', () => {
 		const model = { modelState: {} }
 		const attrs = {
 			content: {
-				responseType: 'pick-one',
+				responseType: TYPE_PICK_ONE,
 				correctLabels: 'Correct!|Great job!',
 				incorrectLabels: 'Incorrect|wrong',
 				shuffle: true

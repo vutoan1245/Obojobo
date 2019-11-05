@@ -1,11 +1,11 @@
 import React from 'react'
 import { Block } from 'slate'
 import Common from 'obojobo-document-engine/src/scripts/common'
+import { MCCHOICE_NODE } from './constants'
 
 import './editor-component.scss'
 
 const { Button, Slider } = Common.components
-const MCCHOICE_NODE = 'ObojoboDraft.Chunks.MCAssessment.MCChoice'
 
 class MCAssessment extends React.Component {
 	changeResponseType(event) {
@@ -48,16 +48,15 @@ class MCAssessment extends React.Component {
 		const content = this.props.node.data.get('content')
 
 		console.log(this.props.node.data.toJSON())
-	
+
 		return (
 			<div
-				className={`component obojobo-draft--chunks--mc-assessment editor--mc-assessment is-type-${questionType}`}>
+				className={`component obojobo-draft--chunks--mc-assessment editor--mc-assessment is-type-${questionType}`}
+			>
 				<div className="mc-settings" contentEditable={false}>
 					<label>
 						Response Type
-						<select
-							value={content.responseType}
-							onChange={this.changeResponseType.bind(this)}>
+						<select value={content.responseType} onChange={this.changeResponseType.bind(this)}>
 							<option value="pick-one">Pick one correct answer</option>
 							<option value="pick-all">Pick all correct answers</option>
 						</select>
@@ -65,7 +64,8 @@ class MCAssessment extends React.Component {
 					<Slider
 						title="Shuffle Choices"
 						initialChecked={content.shuffle}
-						handleCheckChange={this.changeShuffle.bind(this)}/>
+						handleCheckChange={this.changeShuffle.bind(this)}
+					/>
 				</div>
 				<div>
 					{this.props.children}

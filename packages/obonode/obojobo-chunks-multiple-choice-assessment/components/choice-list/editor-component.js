@@ -3,10 +3,9 @@ import '../../viewer-component.scss'
 import React from 'react'
 import { Block } from 'slate'
 import Common from 'Common'
+import { MCCHOICE_NODE } from '../../constants'
 
 const { Button } = Common.components
-
-const MCCHOICE_NODE = 'ObojoboDraft.Chunks.MCAssessment.MCChoice'
 
 const ChoiceList = props => {
 	const addChoice = () => {

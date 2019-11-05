@@ -4,6 +4,15 @@ import { CSSTransition } from 'react-transition-group'
 import React from 'react'
 import Viewer from 'obojobo-document-engine/src/scripts/viewer'
 import isOrNot from 'obojobo-document-engine/src/scripts/common/util/isornot'
+import {
+	MCANSWER_NODE,
+	MCFEEDBACK_NODE,
+	TYPE_PICK_ONE,
+	TYPE_MULTI_CORRECT,
+	TYPE_PICK_ALL,
+	MODE_REVIEW,
+	MODE_SURVEY
+} from '../constants'
 
 const { OboComponent } = Viewer.components
 const { QuestionUtil } = Viewer.util
@@ -20,10 +29,10 @@ const TRANSITION_TIME_MS = 800
 
 const getInputType = responseType => {
 	switch (responseType) {
-		case 'pick-all':
+		case TYPE_PICK_ALL:
 			return 'checkbox'
-		case 'pick-one':
-		case 'pick-one-multiple-correct':
+		case TYPE_PICK_ONE:
+		case TYPE_MULTI_CORRECT:
 		default:
 			return 'radio'
 	}
@@ -49,7 +58,7 @@ const getQuestionScore = (model, isReview, questionState, navStateContext) => {
 	}
 
 	// Override any score property if this is for a survey type question
-	if (questionModel.modelState.type === 'survey') {
+	if (questionModel.modelState.type === MODE_SURVEY) {
 		return 'no-score'
 	}
 
@@ -97,7 +106,7 @@ const getAnsType = (model, isCorrect, isSelected) => {
 	// Renamed for clarity w/ isACorrectChoice
 	const userIsCorrect = isCorrect
 
-	const isASurveyQuestion = getQuestionModel(model).modelState.type === 'survey'
+	const isASurveyQuestion = getQuestionModel(model).modelState.type === MODE_SURVEY
 	const isACorrectChoice = model.get('content').score === 100
 
 	if (isASurveyQuestion) {
@@ -131,7 +140,7 @@ const MCChoice = props => {
 	try {
 		score = getQuestionScore(
 			props.model,
-			props.mode === 'review',
+			props.mode === MODE_REVIEW,
 			props.moduleData.questionState,
 			props.moduleData.navState.context
 		)
@@ -152,7 +161,7 @@ const MCChoice = props => {
 	const inputType = getInputType(props.responseType)
 
 	let flag
-	if (props.mode === 'review') {
+	if (props.mode === MODE_REVIEW) {
 		flag = renderAnswerFlag(ansType)
 	}
 
@@ -178,11 +187,11 @@ const MCChoice = props => {
 				name={props.model.parent.get('id')}
 				role={inputType}
 				aria-checked={isSelected}
-				disabled={props.mode === 'review'}
+				disabled={props.mode === MODE_REVIEW}
 			/>
-			{isSelected && props.questionSubmitted && props.type !== 'review' ? (
+			{isSelected && props.questionSubmitted && props.type !== MODE_REVIEW ? (
 				<span className="for-screen-reader-only">
-					{getChoiceText(score, props.responseType === 'pick-all')}
+					{getChoiceText(score, props.responseType === TYPE_PICK_ALL)}
 				</span>
 			) : null}
 			<div className="children">
@@ -192,7 +201,7 @@ const MCChoice = props => {
 					const Component = child.getComponentClass()
 
 					switch (type) {
-						case 'ObojoboDraft.Chunks.MCAssessment.MCAnswer':
+						case MCANSWER_NODE:
 							return (
 								<div key={id}>
 									{flag}
@@ -200,7 +209,7 @@ const MCChoice = props => {
 								</div>
 							)
 
-						case 'ObojoboDraft.Chunks.MCAssessment.MCFeedback':
+						case MCFEEDBACK_NODE:
 							return (
 								<CSSTransition
 									key={id}

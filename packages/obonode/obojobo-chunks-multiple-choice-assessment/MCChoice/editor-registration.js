@@ -3,8 +3,7 @@ import React from 'react'
 import Node from './editor-component'
 import Schema from './schema'
 import Converter from './converter'
-
-const MCCHOICE_NODE = 'ObojoboDraft.Chunks.MCAssessment.MCChoice'
+import { MCCHOICE_NODE } from '../constants'
 
 const MCChoice = {
 	name: MCCHOICE_NODE,
