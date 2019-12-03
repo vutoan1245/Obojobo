@@ -8,6 +8,7 @@ const {
 } = require('obojobo-express/express_validators')
 const UserModel = require('obojobo-express/models/user')
 const db = require('obojobo-express/db')
+const uuid = require('uuid')
 
 const resultsToUsers = results => {
 	return results.map(u => {
@@ -74,6 +75,70 @@ router
 				res.success(resultsToUsers(searchResults))
 			})
 			.catch(res.unexpected)
+	})
+
+// Copy a public draft to current user
+// mounted as /api/drafts/:draftId/copy/
+router
+	.route('/drafts/:draftId/copy/')
+	.get([requireCanPreviewDrafts, requireCurrentUser])
+	.get(async (req, res) => {
+		try {
+			const userId = req.currentUser.id
+			const draftId = req.params.draftId
+			const newDraftId = uuid.v4()
+
+			await Promise.all([
+				db.none(
+					`
+					INSERT INTO
+						drafts (id, user_id, created_at, deleted)
+					SELECT
+						$[newDraftId] as id, $[userId] as user_id, created_at, deleted
+					FROM
+						drafts
+					WHERE
+						id = $[draftId]
+					`,
+					{ newDraftId, userId, draftId }
+				),
+				db.none(
+					`
+					INSERT INTO
+						drafts_content (id, draft_id, created_at, content, xml)
+					SELECT
+						uuid_generate_v4() as id, $[newDraftId] as user_id, created_at, content, xml
+					FROM
+						drafts_content
+					WHERE
+						draft_id = $[draftId]
+					`,
+					{ newDraftId, draftId }
+				),
+				db.none(
+					`
+					INSERT INTO
+						repository_map_user_to_draft (draft_id, user_id)
+					VALUES
+						($[newDraftId], $[userId])
+					`,
+					{ newDraftId, userId }
+				),
+				db.none(
+					`
+					INSERT INTO
+						draft_copy_from (new_draft_id, old_draft_id)
+					VALUES
+						($[newDraftId], $[draftId])
+					`,
+					{ newDraftId, draftId }
+				)
+			])
+
+			res.success()
+		} catch (e) {
+			res.unexpected(e)
+		}
 	})
 
 // list a draft's permissions

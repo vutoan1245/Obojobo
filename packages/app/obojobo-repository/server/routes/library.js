@@ -76,7 +76,7 @@ router
 				owner,
 				currentUser: req.currentUser
 			}
-			res.render('page-module.jsx', props)
+			res.render('page-module-server.jsx', props)
 		} catch (e) {
 			res.unexpected(e)
 		}

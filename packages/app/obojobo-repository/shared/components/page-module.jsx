@@ -1,12 +1,12 @@
-const React = require('react');
-import DefaultLayout from './layouts/default'
-import RepositoryNav from './repository-nav'
-import RepositoryBanner from './repository-banner'
-import ModuleImage from './module-image'
-import Button from './button'
-import ButtonLink from './button-link'
-import moment from 'moment'
-import  { urlForEditor } from '../repository-utils'
+require('./page-module.scss')
+
+const React = require('react')
+const { useState, useEffect } = require('react')
+const moment = require('moment')
+
+const RepositoryNav = require('./repository-nav')
+const RepositoryBanner = require( './repository-banner')
+const ModuleImage = require('./module-image')
 
 const deleteModule = (title, draftId, deleteFn) => {
 	var response = confirm(`Delete "${title}" id: ${draftId} ?`)
@@ -14,8 +14,29 @@ const deleteModule = (title, draftId, deleteFn) => {
 	deleteFn(draftId)
 }
 
-const PageModule = (props) =>
-	<DefaultLayout title={`${props.module.title} - an Obojobo Module`} className="repository--module">
+const PageModule = (props) => {
+	const [showingModal, setShowingModal] = useState(false)
+
+	const handleCopy = (event) => {
+		event.stopPropagation();
+
+		fetch(`/api/drafts/${props.module.draftId}/copy`)
+			.then(() => {
+				window.location.replace("/dashboard")
+			}).catch(err => {
+				console.log(err)
+			})
+	}
+
+	useEffect(() => {
+		window.addEventListener("mousedown", function(event){
+			event.stopPropagation()
+			setShowingModal(false)
+		});
+	}, [])
+
+	return (
+	<span>
 		<RepositoryNav
 			userId={props.currentUser.id}
 			avatarUrl={props.currentUser.avatarUrl}
@@ -25,9 +46,16 @@ const PageModule = (props) =>
 
 		<RepositoryBanner title={props.module.title}>
 			<ModuleImage id={props.module.draftId} />
+
+			<div className="three-dot" onClick={() => setShowingModal(true)} >
+				{showingModal ? (<div className="three-dot--modal" onMouseDown={e => e.stopPropagation()}>
+					<div className="three-dot--modal--row" onClick={e => handleCopy(e)}>Copy this module</div>
+				</div>) : null}
+			</div>
 		</RepositoryBanner>
 
 		<section className="repository--main-content">
+
 			<div >Created by <b>{props.owner.firstName} {props.owner.lastName}</b> on <b>{moment(props.module.createdAt).format('ll')}</b> and updated {moment(props.module.updatedAt).fromNow()}.</div>
 
 			<h2>Use this Module in your Canvas Course</h2>
@@ -85,6 +113,8 @@ const PageModule = (props) =>
 			</ol>
 
 		</section>
-	</DefaultLayout>
+	</span>
+	)
+}
 
 module.exports = PageModule;
