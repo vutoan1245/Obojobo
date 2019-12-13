@@ -16,27 +16,35 @@ exports.setup = function(options, seedLink) {
 
 exports.up = function(db) {
 	return db
-		.createTable('draft_copy_from', {
-			new_draft_id: {
+		.createTable('drafts_metadata', {
+			draft_id: {
 				type: 'UUID',
-				primaryKey: true,
-				defaultValue: new String('uuid_generate_v4()')
-			},
-			old_draft_id: {
-				type: 'UUID',
-				defaultValue: new String('uuid_generate_v4()')
+				notNull: true
 			},
 			created_at: {
 				type: 'timestamp WITH TIME ZONE',
 				notNull: true,
 				defaultValue: new String('now()')
+			},
+			updated_at: {
+				type: 'timestamp WITH TIME ZONE',
+				notNull: true,
+				defaultValue: new String('now()')
+			},
+			key: {
+				type: 'varchar',
+				notNull: true
+			},
+			value: {
+				type: 'varchar',
+				notNull: true
 			}
 		})
-		.then(() => db.addIndex('draft_copy_from', 'new_draft_id', ['old_draft_id']))
+		.then(() => db.addIndex('drafts_metadata', 'draft_id', ['draft_id', 'key'], true))
 }
 
 exports.down = function(db) {
-	return db.dropTable('draft_copy_from')
+	return db.dropTable('drafts_metadata')
 }
 
 exports._meta = {

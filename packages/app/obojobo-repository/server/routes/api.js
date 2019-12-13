@@ -1,6 +1,8 @@
 const router = require('express').Router() //eslint-disable-line new-cap
 const RepositoryCollection = require('../models/collection')
+const Draft = require('obojobo-express/models/draft')
 const DraftSummary = require('../models/draft_summary')
+const DraftsMetadata = require('../models/drafts_metadata')
 const {
 	requireCanPreviewDrafts,
 	requireCurrentUser,
@@ -86,54 +88,16 @@ router
 		try {
 			const userId = req.currentUser.id
 			const draftId = req.params.draftId
-			const newDraftId = uuid.v4()
 
-			await Promise.all([
-				db.none(
-					`
-					INSERT INTO
-						drafts (id, user_id, created_at, deleted)
-					SELECT
-						$[newDraftId] as id, $[userId] as user_id, created_at, deleted
-					FROM
-						drafts
-					WHERE
-						id = $[draftId]
-					`,
-					{ newDraftId, userId, draftId }
-				),
-				db.none(
-					`
-					INSERT INTO
-						drafts_content (id, draft_id, created_at, content, xml)
-					SELECT
-						uuid_generate_v4() as id, $[newDraftId] as user_id, created_at, content, xml
-					FROM
-						drafts_content
-					WHERE
-						draft_id = $[draftId]
-					`,
-					{ newDraftId, draftId }
-				),
-				db.none(
-					`
-					INSERT INTO
-						repository_map_user_to_draft (draft_id, user_id)
-					VALUES
-						($[newDraftId], $[userId])
-					`,
-					{ newDraftId, userId }
-				),
-				db.none(
-					`
-					INSERT INTO
-						draft_copy_from (new_draft_id, old_draft_id)
-					VALUES
-						($[newDraftId], $[draftId])
-					`,
-					{ newDraftId, draftId }
-				)
-			])
+			const oldDraft = await Draft.fetchById(draftId)
+			const newDraft = await Draft.createWithContent(userId, oldDraft.root.toObject())
+
+			const draftMetadata = new DraftsMetadata({
+				draft_id: newDraft.id,
+				key: 'copied',
+				value: draftId
+			})
+			await draftMetadata.saveOrCreate()
 
 			res.success()
 		} catch (e) {
