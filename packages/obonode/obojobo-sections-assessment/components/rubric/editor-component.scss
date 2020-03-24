@@ -75,15 +75,7 @@
 			right: 0.3em;
 
 			.button {
-				color: $color-action;
-				background-color: inherit; /* stylelint-disable-line sh-waqar/declaration-use-variable */
-				border-color: $color-action;
 				border-width: 2px;
-
-				&:hover {
-					color: $color-bg;
-					background-color: $color-action;
-				}
 			}
 		}
 

@@ -221,7 +221,9 @@ class Rubric extends React.Component {
 				</fieldset>
 				<div className="mods">
 					<div className="title">Extra Credit & Penalties</div>
-					<Button onClick={this.showModModal.bind(this)}>Edit...</Button>
+					<Button altAction onClick={this.showModModal.bind(this)}>
+						Edit...
+					</Button>
 					<ul>
 						{content.mods.map((mod, index) => {
 							const range = getParsedRange(mod.attemptCondition + '')

@@ -343,7 +343,9 @@ class TriggerListModal extends React.Component {
 									{this.renderActionOptions(triggerIndex, actionIndex, action)}
 								</div>
 							))}
-							<Button onClick={this.createAction.bind(this, triggerIndex)}>+ Add Action</Button>
+							<Button altAction onClick={this.createAction.bind(this, triggerIndex)}>
+								+ Add Action
+							</Button>
 						</div>
 					))}
 					<Button onClick={this.createTrigger}>+ Add Trigger</Button>

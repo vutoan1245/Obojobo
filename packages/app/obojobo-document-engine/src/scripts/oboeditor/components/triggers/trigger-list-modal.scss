@@ -68,18 +68,10 @@
 
 		.button {
 			padding: 0.2em 0.5em;
-			color: $color-action;
-			background-color: $color-bg;
-			border-color: $color-action;
 			border-width: 2px;
 			height: 2.35em;
 			margin-left: 1em;
 			margin-top: 1em;
-
-			&:hover {
-				color: $color-bg;
-				background-color: $color-action;
-			}
 		}
 	}
 

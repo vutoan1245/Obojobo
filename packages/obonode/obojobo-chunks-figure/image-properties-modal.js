@@ -116,11 +116,7 @@ class ImageProperties extends React.Component {
 								}}
 							/>
 
-							<Button
-								className="obojobo-draft--components--button alt-action is-not-dangerous align-center"
-								onClick={this.onOpenChoosingImageModal}
-								ref={this.inputRef}
-							>
+							<Button altAction onClick={this.onOpenChoosingImageModal} ref={this.inputRef}>
 								Change Image...
 							</Button>
 						</div>
