@@ -1,5 +1,9 @@
 import React from 'react'
 import renderer from 'react-test-renderer'
+import { mount } from 'enzyme'
+import { Transforms } from 'slate'
+jest.mock('slate')
+jest.mock('slate-react')
 
 import Heading from './editor-component'
 
@@ -18,5 +22,23 @@ describe('Heading Editor Node', () => {
 		const tree = component.toJSON()
 
 		expect(tree).toMatchSnapshot()
+	})
+
+	test('Heading component calls Transforms.select for triple-click', () => {
+		const component = mount(<Heading element={{ content: {} }} />)
+
+		// Double click
+		component
+			.find('.obojobo-draft--chunks--heading')
+			.at(0)
+			.simulate('click', { detail: 2 })
+		expect(Transforms.select).toHaveBeenCalledTimes(0)
+
+		// Triple click
+		component
+			.find('.obojobo-draft--chunks--heading')
+			.at(0)
+			.simulate('click', { detail: 3 })
+		expect(Transforms.select).toHaveBeenCalledTimes(1)
 	})
 })

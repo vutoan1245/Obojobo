@@ -4,6 +4,7 @@ exports[`Heading Editor Node Heading component 1`] = `
 <div>
   <div
     className="text-chunk obojobo-draft--chunks--heading pad"
+    onClick={[Function]}
   >
     <h1>
       <span
